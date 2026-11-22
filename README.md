@@ -10,7 +10,7 @@ Lettering is for my daughter, Ma~, who wisely decided she didn't need a keyboard
 
 ## First-time setup
 
-These commands are for the Linux zsh setup used for this repository. If your SDK or JDK is installed elsewhere, change the paths below. This project uses Gradle 7.5, which needs JDK 17 in this setup.
+These commands are for the Linux zsh setup used for this repository. If your SDK or JDK is installed elsewhere, change the paths below. This project uses Gradle 8.14.8 and Android Gradle Plugin 8.13.2, which require JDK 17; Java and Kotlin sources target Java 17.
 
 Add these lines to `~/.zshrc`, then open a new terminal or run `source ~/.zshrc`:
 
@@ -32,8 +32,8 @@ adb version
 Install the SDK pieces used to build this project and run the Android 16 emulator:
 
 ```sh
-android sdk install "platforms;android-34"
-android sdk install "build-tools;34.0.0"
+android sdk install platforms/android-36
+android sdk install build-tools/36.0.0
 android sdk install platform-tools
 android sdk install emulator
 android sdk install "system-images;android-36;google_apis_playstore;x86_64"
@@ -126,13 +126,13 @@ adb shell am instrument -w io.github.diepet.lettering.test/androidx.test.runner.
 
 ## Publish to Google Play
 
-**Publishing is not configured yet.** The app currently targets API 34; since August 31, 2026, new Play apps and updates must target API 36 or higher. The release build also has no signing configuration, and `fastlane/Appfile` has an empty Play service-account key path. These must be set up before uploading. See [Play target API requirements](https://developer.android.com/google/play/requirements/target-sdk), [Play App Signing](https://developer.android.com/studio/publish/app-signing), and [Play Console release steps](https://support.google.com/googleplay/android-developer/answer/9859348).
+**Publishing is not configured yet.** The project targets API 36. Before uploading, configure release signing and set the Play service-account key path in `fastlane/Appfile`. See [Play target API requirements](https://developer.android.com/google/play/requirements/target-sdk), [Play App Signing](https://developer.android.com/studio/publish/app-signing), and [Play Console release steps](https://support.google.com/googleplay/android-developer/answer/9859348).
 
 Basic release steps:
 
 1. Create/verify a Play Console developer account, then create an app with package name `io.github.diepet.lettering`. This fork's package name is different from the upstream app.
 2. Complete the store listing and required Play Console forms, including app description, screenshots, content rating, and Data safety.
-3. Update `targetSdk` to at least 36 and increase `versionCode` in `base/build.gradle` for each release.
+3. Keep `targetSdk` aligned with the current Play requirement and increase `versionCode` in `base/build.gradle` for each release.
 4. Set up Play App Signing and a private upload key. Add release signing to Gradle using local secrets or environment variables; never commit keys or passwords.
 5. Build the signed Android App Bundle (AAB): `./gradlew :base:bundleRelease`. The output will be under `base/build/outputs/bundle/release/`.
 6. Upload the AAB to an internal testing track in Play Console, check the release, then promote it when ready.

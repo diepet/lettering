@@ -14,9 +14,11 @@ import io.github.diepet.lettering.styles.AppTextStyle
 import java.util.*
 
 class StyleConfigAdapter(
-    private var dataSource: List<AppTextStyle>?,
+    dataSource: List<AppTextStyle>?,
     private val mItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<StyleConfigAdapter.ItemViewHolder>() {
+
+    private var dataSource = dataSource?.toMutableList()
 
     interface OnItemClickListener {
         fun onEnableClick(id: String)
@@ -25,7 +27,7 @@ class StyleConfigAdapter(
     }
 
     fun updateFonts(newDataSource: List<AppTextStyle>?) {
-        dataSource = newDataSource
+        dataSource = newDataSource?.toMutableList()
         notifyDataSetChanged()
     }
 
@@ -57,22 +59,19 @@ class StyleConfigAdapter(
         val mButtonDown: MaterialButton = v.findViewById(R.id.order_btn_down)
 
         override fun onClick(v: View) {
-            try {
-                val index = adapterPosition
-                val style = dataSource?.get(index) ?: return
+            val index = bindingAdapterPosition
+            if (index == RecyclerView.NO_POSITION) return
+            val style = dataSource?.getOrNull(index) ?: return
 
-                if (v.id == R.id.enable_box) {
-                    mItemClickListener.onEnableClick(style.styleId)
-                    notifyItemChanged(index)
-                }
-                if (v.id == R.id.order_btn_up) {
-                    mItemClickListener.onReorderClick(style.styleId, 0)
-                }
-                if (v.id == R.id.order_btn_down) {
-                    mItemClickListener.onReorderClick(style.styleId, itemCount - 1)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
+            if (v.id == R.id.enable_box) {
+                mItemClickListener.onEnableClick(style.styleId)
+                notifyItemChanged(index)
+            }
+            if (v.id == R.id.order_btn_up) {
+                mItemClickListener.onReorderClick(style.styleId, 0)
+            }
+            if (v.id == R.id.order_btn_down) {
+                mItemClickListener.onReorderClick(style.styleId, itemCount - 1)
             }
         }
 
@@ -88,16 +87,18 @@ class StyleConfigAdapter(
     }
 
     fun onItemMove(fromPosition: Int, toPosition: Int) {
-        val style = dataSource?.get(fromPosition) ?: return
+        val styles = dataSource ?: return
+        if (fromPosition !in styles.indices || toPosition !in styles.indices) return
+        val style = styles[fromPosition]
         mItemClickListener.onDragComplete(style.styleId, toPosition)
 
         if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {
-                Collections.swap(dataSource, i, i + 1)
+                Collections.swap(styles, i, i + 1)
             }
         } else {
             for (i in fromPosition downTo toPosition + 1) {
-                Collections.swap(dataSource, i, i - 1)
+                Collections.swap(styles, i, i - 1)
             }
         }
         notifyItemMoved(fromPosition, toPosition)

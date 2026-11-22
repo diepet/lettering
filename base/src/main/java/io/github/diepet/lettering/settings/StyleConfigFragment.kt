@@ -131,7 +131,12 @@ class StyleConfigFragment : Fragment() {
             viewHolder: RecyclerView.ViewHolder,
             target: RecyclerView.ViewHolder
         ): Boolean {
-            adapter.onItemMove(viewHolder.adapterPosition, target.adapterPosition)
+            val fromPosition = viewHolder.bindingAdapterPosition
+            val targetPosition = target.bindingAdapterPosition
+            if (fromPosition == RecyclerView.NO_POSITION ||
+                targetPosition == RecyclerView.NO_POSITION
+            ) return false
+            adapter.onItemMove(fromPosition, targetPosition)
             return true
         }
 
@@ -139,7 +144,8 @@ class StyleConfigFragment : Fragment() {
             viewHolder: RecyclerView.ViewHolder,
             direction: Int
         ) {
-            adapter.onItemDismiss(viewHolder.adapterPosition)
+            val position = viewHolder.bindingAdapterPosition
+            if (position != RecyclerView.NO_POSITION) adapter.onItemDismiss(position)
         }
 
     }

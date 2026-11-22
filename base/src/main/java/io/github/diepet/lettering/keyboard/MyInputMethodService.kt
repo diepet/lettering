@@ -1,5 +1,6 @@
-@file:Suppress("DEPRECATION")
+@file:Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
 
+/* The platform IME listener callbacks are deprecated but still provide the keyboard hooks used here. */
 package io.github.diepet.lettering.keyboard
 
 import android.annotation.SuppressLint
@@ -645,38 +646,10 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
         imm.showInputMethodPicker()
     }
 
-    /**
-     * This looks at the ime options given by the current editor, to set the
-     * appropriate label on the keyboard's enter key (if it has one).
-     */
+    /** The enter key labels are currently left unchanged because of keyboard theming. */
+    @Suppress("UNUSED_PARAMETER")
     private fun setImeOptions(options: Int) {
-
-        // skip this for now until it works with theming
-        return
-
-        val mEnterKeyIndex: Int = -1
-        for (i in 0 until (keyboard?.keys)?.size!!) {
-            if (keyboard!!.keys[i].codes.contains(KEYCODE_DONE)) {
-                mEnterKeyIndex = i
-                break
-            }
-        }
-        val mEnterKey = if (mEnterKeyIndex >= 0) keyboard!!.keys[mEnterKeyIndex] else return
-        var labelRes: Int? = null
-        var iconRes: Int? = R.drawable.kbd_ic_keyboard_return
-
-        when (options and (EditorInfo.IME_MASK_ACTION or EditorInfo.IME_FLAG_NO_ENTER_ACTION)) {
-            EditorInfo.IME_ACTION_GO -> labelRes = R.string.label_go_key
-            EditorInfo.IME_ACTION_NEXT -> labelRes = R.string.label_next_key
-            EditorInfo.IME_ACTION_SEND -> labelRes = R.string.label_send_key
-            EditorInfo.IME_ACTION_SEARCH -> iconRes = R.drawable.kbd_ic_keyboard_search
-        }
-
-        mEnterKey.iconPreview = null
-        mEnterKey.label = if (labelRes != null) resources.getText(labelRes) else null
-        mEnterKey.icon =
-            if (labelRes == null || iconRes == null) null else resources.getDrawable(iconRes)
-        if (keyboardView != null) keyboardView!!.invalidateKey(mEnterKeyIndex)
+        // TODO: Revisit when enter key labels can be updated without losing their theme.
     }
 
     override fun onText(charSequence: CharSequence) {

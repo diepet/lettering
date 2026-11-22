@@ -21,14 +21,14 @@ class RandomCaps internal constructor(
             if (sequence != null && sequence.lastIndex >= 0) {
                 val trimmedSeq = sequence.trim()
                 if (trimmedSeq.isNotEmpty()) {
-                    val lastChar = trimmedSeq[trimmedSeq.lastIndex].toInt()
-                    lowercase = lastChar >= 'A'.toInt() && lastChar <= 'Z'.toInt()
+                    val lastChar = trimmedSeq[trimmedSeq.lastIndex].code
+                    lowercase = lastChar in 'A'.code..'Z'.code
                 }
             }
             val cs = text!!.toCharArray()
             val temp = StringBuilder()
             for (c in cs) {
-                temp.append(if (lowercase) c.toLowerCase() else c.toUpperCase())
+                temp.append(if (lowercase) c.lowercaseChar() else c.uppercaseChar())
                 lowercase = !lowercase
             }
             return temp.toString()

@@ -53,13 +53,10 @@ class StylePickerAdapter(
         RecyclerView.ViewHolder(v), View.OnClickListener {
         val mTextView: TextView = v.findViewById(R.id.text_value)
         override fun onClick(v: View) {
-            try {
-                val index = adapterPosition
-                val item = dataSource!![index]
-                mItemClickListener.onItemClick(item, index)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            val index = bindingAdapterPosition
+            if (index == RecyclerView.NO_POSITION) return
+            val item = dataSource?.getOrNull(index) ?: return
+            mItemClickListener.onItemClick(item, index)
         }
 
         init {

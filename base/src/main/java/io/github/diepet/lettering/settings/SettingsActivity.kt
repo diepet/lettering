@@ -1,8 +1,16 @@
 package io.github.diepet.lettering.settings
 
+import android.content.res.Configuration
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import io.github.diepet.lettering.R
@@ -14,6 +22,7 @@ class SettingsActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applySystemBarInsets()
 
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -57,6 +66,41 @@ class SettingsActivity : AppCompatActivity(),
         return super.onOptionsItemSelected(item)
     }
 
+    @Suppress("DEPRECATION")
+    private fun applySystemBarInsets() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            window.statusBarColor = Color.TRANSPARENT
+            window.navigationBarColor = Color.TRANSPARENT
+        }
+
+        val isNightTheme = (resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+            isAppearanceLightStatusBars = !isNightTheme
+            isAppearanceLightNavigationBars = !isNightTheme
+        }
+
+        val content = findViewById<View>(android.R.id.content)
+        val initialLeft = content.paddingLeft
+        val initialTop = content.paddingTop
+        val initialRight = content.paddingRight
+        val initialBottom = content.paddingBottom
+        ViewCompat.setOnApplyWindowInsetsListener(content) { view, windowInsets ->
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            view.setPadding(
+                initialLeft + insets.left,
+                initialTop + insets.top,
+                initialRight + insets.right,
+                initialBottom + insets.bottom
+            )
+            windowInsets
+        }
+        ViewCompat.requestApplyInsets(content)
+    }
+
     override fun onPreferenceStartFragment(
         caller: PreferenceFragmentCompat, pref: Preference
     ): Boolean {
@@ -70,7 +114,6 @@ class SettingsActivity : AppCompatActivity(),
                 )
             }
         fragment?.arguments = args
-        fragment?.setTargetFragment(caller, 0)
         fragment?.let {
             supportFragmentManager.beginTransaction()
                 .add(android.R.id.content, it)

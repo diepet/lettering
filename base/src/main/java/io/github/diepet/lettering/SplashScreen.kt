@@ -26,6 +26,13 @@ class SplashScreen : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
         finish()
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            applyLegacyTransition()
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun applyLegacyTransition() {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     }
 }

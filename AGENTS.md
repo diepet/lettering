@@ -6,7 +6,7 @@ This is a single-module Android application; Gradle includes the `:base` app mod
 
 ## Build, Test, and Development Commands
 
-Use the checked-in Gradle wrapper with JDK 17 and an Android SDK (compile SDK 34):
+Use the checked-in Gradle wrapper with JDK 17 and Android SDK 36. Java and Kotlin sources target Java 17:
 
 - `./gradlew :base:assembleDebug` builds the debug APK.
 - `./gradlew :base:installDebug` builds and installs it on a connected device or emulator.

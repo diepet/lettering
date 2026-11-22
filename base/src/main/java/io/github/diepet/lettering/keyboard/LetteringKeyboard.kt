@@ -1,3 +1,6 @@
+@file:Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
+
+/* This keyboard still implements Android's deprecated framework Keyboard API. */
 package io.github.diepet.lettering.keyboard
 
 import android.content.Context

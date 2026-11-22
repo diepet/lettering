@@ -1,5 +1,6 @@
-@file:Suppress("DEPRECATION")
+@file:Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
 
+/* Android has no drop-in replacement for the framework KeyboardView IME callbacks. */
 package io.github.diepet.lettering.keyboard
 
 import android.content.Context
