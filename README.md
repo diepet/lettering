@@ -4,6 +4,10 @@
 
 Lettering is an Android keyboard for applying expressive Unicode text styles while you type. It includes more than 30 styles, configurable keyboard layouts, and style ordering controls.
 
+## Why Lettering exists
+
+I created Lettering for my daughter, Ma~, and dedicate it to her. She chose not to install similar keyboard apps after we became concerned about usage tracking and data storage. Some of the apps we encountered were from Chinese developers, and their data practices were a particular concern for us. I built Lettering so she could enjoy expressive text styles with her safety and privacy in mind.
+
 ## First-time setup
 
 These commands are for the Linux zsh setup used for this repository. If your SDK or JDK is installed elsewhere, change the paths below. This project uses Gradle 7.5, which needs JDK 17 in this setup.
@@ -138,3 +142,7 @@ The repository includes a Fastlane deploy lane, but it also needs signing and a 
 ## Contributing
 
 Report bugs or request features in [GitHub Issues](https://github.com/diepet/lettering/issues). Pull requests should summarize the change, reference an issue when relevant, and include screenshots for visible UI changes. Localized strings are in `base/src/main/res/values-*`; Play Store listing text is in `fastlane/metadata/android`.
+
+## Acknowledgments
+
+Special thanks to [Neea Rusch](https://github.com/nkrusch) and [Mobile First](https://github.com/MobileFirstLLC) for creating [Irregular Expressions](https://github.com/MobileFirstLLC/irregular-expressions), the original Android keyboard project that Lettering was forked from. Lettering builds on their work under the MIT License; see [LICENSE](LICENSE).
