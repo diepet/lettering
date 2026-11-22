@@ -6,12 +6,12 @@ This is a single-module Android application; Gradle includes the `:base` app mod
 
 ## Build, Test, and Development Commands
 
-The repository contains Gradle wrapper support files but no `gradlew` script, so use an installed Gradle with a configured Android SDK (compile SDK 34):
+Use the checked-in Gradle wrapper with JDK 17 and an Android SDK (compile SDK 34):
 
-- `gradle :base:assembleDebug` builds the debug APK.
-- `gradle :base:installDebug` builds and installs it on a connected device or emulator.
-- `gradle :base:testDebugUnitTest` runs local JVM tests.
-- `gradle :base:connectedDebugAndroidTest` runs instrumented tests on a connected device or emulator.
+- `./gradlew :base:assembleDebug` builds the debug APK.
+- `./gradlew :base:installDebug` builds and installs it on a connected device or emulator.
+- `./gradlew :base:testDebugUnitTest` runs local JVM tests.
+- `./gradlew :base:connectedDebugAndroidTest` runs instrumented tests on a connected device or emulator.
 
 Open the project in Android Studio for emulator-based development and resource previews.
 
