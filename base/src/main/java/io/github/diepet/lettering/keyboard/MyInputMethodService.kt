@@ -18,7 +18,6 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.preference.PreferenceManager
 import android.text.InputType
-import android.text.TextUtils
 import android.text.method.MetaKeyKeyListener
 import android.util.Log
 import android.view.*
@@ -41,6 +40,7 @@ import io.github.diepet.lettering.keyboard.Constants.VIBRATION_DURATION_MS
 import io.github.diepet.lettering.settings.SettingsActivity
 import io.github.diepet.lettering.styles.AppTextStyle
 import io.github.diepet.lettering.styles.AvailableStyles.getEnabledStyles
+import io.github.diepet.lettering.styles.AvailableStyles.getStyles
 import io.github.diepet.lettering.styles.StylePickerAdapter
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
@@ -52,6 +52,8 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
 
     // All available text styles
     private var styles = getEnabledStyles()
+    private val styleSelection = StylePickerSelection()
+    private val inputSession = InputSessionState()
 
     // UI Elements
     private var keyboardView: LetteringKeyboardView? = null
@@ -64,8 +66,6 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
     // keyboard default state
     private val mComposing = StringBuilder()
     private var keyboardChoice = Constants.ALPHA_KBD
-    private var styleIndex = REGULAR_STYLE_INDEX
-    private var lastSelectedStyleIndex = REGULAR_STYLE_INDEX
     private var reverseCursorDirection = false
     private var mMetaState: Long = 0
 
@@ -121,12 +121,12 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
         )
         stylePicker?.layoutManager = layoutManager
         stylePicker?.adapter = adapter
-        adapter!!.setSelectedFont(styleIndex)
+        adapter!!.setSelectedFont(selectedStyleIndex())
 
         /* setup UI icon buttons */
         styleToggle = layout.findViewById(R.id.style_button)
         styleToggle?.setOnClickListener(onFontButtonClick())
-        setFontStyleIcon(styleIndex == REGULAR_STYLE_INDEX)
+        setFontStyleIcon(selectedStyleIndex() == REGULAR_STYLE_INDEX)
         layout.findViewById<View>(R.id.settings_button).setOnClickListener(onSettingsClick())
         return layout
     }
@@ -172,6 +172,7 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
      */
     override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
         super.onStartInputView(info, restarting)
+        refreshStyles()
         if (initPreferences()) {
             // when preferences have changed appearance, need to
             // restart the input method service to apply theme change
@@ -179,8 +180,6 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
             return
         }
         keyboardExtras?.visibility = VISIBLE
-        styles = getEnabledStyles()
-        adapter!!.updateStyles(styles)
         chooseKeyboardFromInputType(info)
     }
 
@@ -196,8 +195,32 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
         // the underlying state of the text editor could have changed anyway.
         mComposing.setLength(0)
         if (!restarting) mMetaState = 0
+        inputSession.start(
+            attribute.inputType,
+            attribute.initialSelStart,
+            attribute.initialSelEnd
+        )
         chooseKeyboardFromInputType(attribute)
         setImeOptions(attribute.imeOptions)
+    }
+
+    override fun onUpdateSelection(
+        oldSelStart: Int,
+        oldSelEnd: Int,
+        newSelStart: Int,
+        newSelEnd: Int,
+        candidatesStart: Int,
+        candidatesEnd: Int
+    ) {
+        super.onUpdateSelection(
+            oldSelStart,
+            oldSelEnd,
+            newSelStart,
+            newSelEnd,
+            candidatesStart,
+            candidatesEnd
+        )
+        inputSession.updateSelection(newSelStart, newSelEnd)
     }
 
     /**
@@ -406,15 +429,15 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
      * Handle keyboard delete key press
      */
     private fun handleDeleteKeyPress() {
-        val inputConnection = currentInputConnection
-        val selectedText = inputConnection.getSelectedText(0)
-        if (TextUtils.isEmpty(selectedText)) {
-            if (reverseCursorDirection) {
-                inputConnection.deleteSurroundingText(0, 1)
-            } else
-                inputConnection.deleteSurroundingText(1, 0)
-        } else {
-            inputConnection.commitText("", 1)
+        val inputConnection = currentInputConnection ?: return
+        val deleted = deleteBackspace(
+            FrameworkEditorInputConnection(inputConnection),
+            inputSession.selection,
+            reverseCursorDirection,
+            inputSession.isPasswordField
+        )
+        if (deleted) {
+            inputSession.markCollapsed()
         }
     }
 
@@ -433,26 +456,24 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
      * @param primaryCode pressed key code
      */
     private fun encodeCharacter(primaryCode: Int) {
-        val inputConnection = currentInputConnection
         var code = primaryCode.toChar()
         if (Character.isLetter(code) && keyboard!!.isShifted) {
             code = Character.toUpperCase(code)
         }
-        var text = code.toString()
-        if (styleIndex >= 0 && styleIndex < styles.size) {
-            val style = styles[styleIndex]
-            text = if (style.isSequenceAware) {
-                val seq = inputConnection.getTextBeforeCursor(5, 0)
-                style.encode(text, seq).toString()
-            } else {
-                style.encode(text).toString()
-            }
-        }
-        inputConnection.commitText(text, 1)
+        commitTypedText(code.toString())
+    }
 
-        // adjust cursor position when typing right to left
-        if (reverseCursorDirection)
-            inputConnection.commitText("", -text.length)
+    private fun commitTypedText(text: String) {
+        val inputConnection = currentInputConnection ?: return
+        if (commitStyledCharacter(
+                FrameworkEditorInputConnection(inputConnection),
+                text,
+                styleSelection.selectedStyle(styles),
+                inputSession.isPasswordField
+            )
+        ) {
+            inputSession.markCollapsed()
+        }
 
         if (uppercaseNextKeyOnly) unsetShift()
     }
@@ -465,16 +486,30 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
     private fun onFontSelection(): StylePickerAdapter.OnItemClickListener {
         return object : StylePickerAdapter.OnItemClickListener {
             override fun onItemClick(item: AppTextStyle?, index: Int) {
-                val previous = lastSelectedStyleIndex
-                styleIndex = index
-                lastSelectedStyleIndex = index
-                setFontStyleIcon(false)
-                setCursorDirection(styleIndex)
-                adapter!!.setSelectedFont(styleIndex)
-                adapter!!.notifyItemChanged(styleIndex)
-                adapter!!.notifyItemChanged(previous)
+                val styleId = item?.styleId ?: return
+                val previous = selectedStyleIndex()
+                if (!styleSelection.select(styleId, styles)) return
+                val selected = selectedStyleIndex()
+                setCursorDirection(selected)
+                setFontStyleIcon(selected == REGULAR_STYLE_INDEX)
+                adapter?.setSelectedFont(selected)
+                if (selected >= 0) adapter?.notifyItemChanged(selected)
+                if (previous >= 0) adapter?.notifyItemChanged(previous)
             }
         }
+    }
+
+    private fun selectedStyleIndex(): Int = styleSelection.selectedIndex(styles)
+
+    private fun refreshStyles() {
+        val allStyles = getStyles()
+        styles = getEnabledStyles()
+        styleSelection.reconcile(styles, allStyles)
+        val selected = selectedStyleIndex()
+        adapter?.updateStyles(styles)
+        adapter?.setSelectedFont(selected)
+        setCursorDirection(selected)
+        setFontStyleIcon(selected == REGULAR_STYLE_INDEX)
     }
 
     /**
@@ -506,11 +541,14 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
      */
     private fun onFontButtonClick(): View.OnClickListener {
         return View.OnClickListener {
-            val disable = styleIndex != REGULAR_STYLE_INDEX
-            styleIndex = if (disable) REGULAR_STYLE_INDEX else lastSelectedStyleIndex
-            setCursorDirection(styleIndex)
-            setFontStyleIcon(disable)
-            adapter!!.setSelectedFont(styleIndex)
+            val previous = selectedStyleIndex()
+            styleSelection.toggle(styles)
+            val selected = selectedStyleIndex()
+            setCursorDirection(selected)
+            setFontStyleIcon(selected == REGULAR_STYLE_INDEX)
+            adapter?.setSelectedFont(selected)
+            if (previous >= 0) adapter?.notifyItemChanged(previous)
+            if (selected >= 0) adapter?.notifyItemChanged(selected)
         }
     }
 
@@ -520,11 +558,11 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
      * @param disable - custom styles are disabled
      */
     private fun setFontStyleIcon(disable: Boolean) {
-        styleToggle!!.setImageResource(
+        styleToggle?.setImageResource(
             if (disable) R.drawable.kbd_ic_style_off
             else R.drawable.kbd_ic_style_on
         )
-        stylePicker!!.alpha = if (disable) 0.65f else 1.0f
+        stylePicker?.alpha = if (disable) 0.65f else 1.0f
     }
 
     /**
@@ -641,7 +679,9 @@ class MyInputMethodService : InputMethodService(), OnKeyboardActionListener {
         if (keyboardView != null) keyboardView!!.invalidateKey(mEnterKeyIndex)
     }
 
-    override fun onText(charSequence: CharSequence) {}
+    override fun onText(charSequence: CharSequence) {
+        commitTypedText(applyKeyboardShift(charSequence, keyboard?.isShifted == true))
+    }
     override fun swipeLeft() {}
     override fun swipeRight() {}
     override fun swipeDown() {}

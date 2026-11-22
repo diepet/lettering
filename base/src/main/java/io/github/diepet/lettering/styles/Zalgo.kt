@@ -11,7 +11,7 @@ class Zalgo internal constructor(
     name: String,
     priority: Int,
     enabled: Boolean
-) : AppTextStyle(id, name, enabled, priority, false, true) {
+) : AppTextStyle(id, name, enabled, priority, false, false) {
 
     companion object {
         const val id = "zalgo"

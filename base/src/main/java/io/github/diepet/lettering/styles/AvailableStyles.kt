@@ -51,6 +51,8 @@ object AvailableStyles {
      */
     fun init(ctx: Context) {
         styles.clear()
+        disabledList.clear()
+        styleOrder.clear()
         val res = ctx.resources
         prefs = PreferenceManager.getDefaultSharedPreferences(ctx)
         restoreDisabledList()
