@@ -6,7 +6,7 @@ Lettering is an Android keyboard for applying expressive Unicode text styles whi
 
 ## Why Lettering exists
 
-I created Lettering for my daughter, Ma~, and dedicate it to her. She chose not to install similar keyboard apps after we became concerned about usage tracking and data storage. Some of the apps we encountered were from Chinese developers, and their data practices were a particular concern for us. I built Lettering so she could enjoy expressive text styles with her safety and privacy in mind.
+Lettering is for my daughter, Ma~, who wisely decided she didn't need a keyboard app that might keep a diary of everything she typed. So I made her one of her own: a little more expressive, a lot more personal, and built with her safety and privacy in mind. Ma~, may your words be bold, your typos be adorable, and your keyboard always mind its manners.
 
 ## First-time setup
 
