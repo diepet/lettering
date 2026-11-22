@@ -9,7 +9,7 @@
             android:key="style_configs"
             android:summary="@string/config_styles_summary"
             android:title="@string/configure_styles"
-            app:fragment="mf.irregex.settings.StyleConfigFragment" />
+            app:fragment="io.github.diepet.lettering.settings.StyleConfigFragment" />
 
         <SwitchPreference
             android:icon="@drawable/pref_ic_vibrate"
@@ -73,19 +73,19 @@
             android:title="@string/source_code">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/MobileFirstLLC/irregular-expressions" />
+                android:data="https://github.com/diepet/lettering" />
         </PreferenceScreen>
         <Preference
             android:icon="@drawable/pref_ic_information_outline"
             android:summary="@string/versionName"
             android:title="@string/label_version" />
         <PreferenceScreen
-            android:icon="@drawable/pref_ic_mf"
+            android:icon="@drawable/pref_ic_information_outline"
             android:summary="@string/developer"
             android:title="@string/label_developer">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://mobilefirst.me" />
+                android:data="https://github.com/diepet" />
         </PreferenceScreen>
     </PreferenceCategory>
 
