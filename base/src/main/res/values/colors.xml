@@ -7,9 +7,9 @@
     <color name="colorAccent">@color/colorPrimary</color>
     <color name="transparent">@android:color/transparent</color>
     <!-- logo background outside app -->
-    <color name="ic_launcher_background">#E6E6E6</color>
+    <color name="ic_launcher_background">#FEFDFE</color>
     <!-- logo background in splash screen -->
-    <color name="splash_background">#eeeeee</color>
+    <color name="splash_background">#FEFDFE</color>
     <!-- background gradient -->
     <color name="gradient_mf_blue">#ff009DDC</color>
     <color name="gradient_mf_green">#ff3ddc84</color>

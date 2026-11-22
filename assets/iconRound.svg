@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" role="img" aria-label="Lettering round app icon">
-  <circle cx="300" cy="300" r="300" fill="#E6E6E6"/>
-  <path d="M195 180h210l40 40v190l-40 40H195l-40-40V220z" fill="#48709B"/>
-  <path d="M195 165h210l40 40v190l-40 40H195l-40-40V205z" fill="#304E75"/>
-  <path d="M195 155h210l40 40v190l-40 40H195l-40-40V195z" fill="#4D4D4D"/>
-  <path d="M155 360l40 40h210l40-40v25l-40 40H195l-40-40z" fill="#000" opacity=".18"/>
-  <circle cx="406" cy="195" r="12" fill="#FFFF2A"/>
-  <path d="M240 218h42v134h112v42H240z" fill="#E4EAF6"/>
+  <defs>
+    <clipPath id="roundMask">
+      <circle cx="300" cy="300" r="300"/>
+    </clipPath>
+  </defs>
+  <circle cx="300" cy="300" r="300" fill="#FEFDFE"/>
+  <image href="logo.png" x="80" y="78" width="440" height="449" preserveAspectRatio="xMidYMid meet" clip-path="url(#roundMask)"/>
 </svg>

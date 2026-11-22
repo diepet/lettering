@@ -1,15 +1,8 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="600dp"
-    android:height="600dp"
-    android:viewportWidth="600"
-    android:viewportHeight="600">
-    <path
-        android:fillColor="@color/splash_background"
-        android:pathData="M300,0A300,300 0,0 1,600 300A300,300 0,0 1,300 600A300,300 0,0 1,0 300A300,300 0,0 1,300 0Z" />
-    <path android:fillColor="#48709B" android:pathData="M195,180h210l40,40v190l-40,40H195l-40,-40V220z" />
-    <path android:fillColor="#304E75" android:pathData="M195,165h210l40,40v190l-40,40H195l-40,-40V205z" />
-    <path android:fillColor="#4D4D4D" android:pathData="M195,155h210l40,40v190l-40,40H195l-40,-40V195z" />
-    <path android:fillColor="#2E000000" android:pathData="M155,360l40,40h210l40,-40v25l-40,40H195l-40,-40z" />
-    <path android:fillColor="#FFFF2A" android:pathData="M406,183c6.627,0 12,5.373 12,12s-5.373,12 -12,12 -12,-5.373 -12,-12 5.373,-12 12,-12z" />
-    <path android:fillColor="#E4EAF6" android:pathData="M240,218h42v134h112v42H240z" />
-</vector>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/splash_background" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_launcher_foreground" />
+</layer-list>

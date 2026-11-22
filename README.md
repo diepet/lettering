@@ -90,6 +90,17 @@ Copy the phone's serial from the first column of the `adb devices -l` output (it
 android run --device=PHONE_SERIAL --apks=base/build/outputs/apk/debug/base-debug.apk
 ```
 
+If the phone is missing from `adb devices -l`, unlock it, check its USB notification and choose **File transfer** if offered, confirm **USB debugging** is on, and approve any computer-authorization prompt. Try a USB data cable and another port (some cables only charge). On Linux, `lsusb` should show a new device when the phone is connected. On Ubuntu, if `adb devices -l` says `no permissions`, install the USB permission rules:
+
+```sh
+sudo apt update
+sudo apt install android-sdk-platform-tools-common
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+Then unplug and reconnect the phone, unlock it, and accept the computer-authorization prompt. If `adb devices -l` says `unauthorized` and no prompt appears, open **Developer options → Revoke USB debugging authorizations**, turn USB debugging off and on, then reconnect the unlocked phone and accept the new prompt. Do not run ADB with `sudo`. If the phone is visible in `lsusb` but still missing in ADB, restart ADB with `adb kill-server` and `adb start-server`.
+
 Follow **Enable Keyboard** and **Select Keyboard** in the app, then type in its example field. Use a test phrase rather than a password or other sensitive text while trying a third-party keyboard. When testing is done, switch back to your usual keyboard from Android's keyboard picker.
 
 ## Build and test

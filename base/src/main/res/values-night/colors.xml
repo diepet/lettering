@@ -5,9 +5,9 @@
     <color name="colorPrimary">#3AA3FF</color>
     <color name="colorPrimaryDark">#1A1B25</color>
     <!-- logo background outside app -->
-    <color name="ic_launcher_background">#E6E6E6</color>
+    <color name="ic_launcher_background">#FEFDFE</color>
     <!-- logo background in splash screen -->
-    <color name="splash_background">#eee</color>
+    <color name="splash_background">#FEFDFE</color>
     <!-- background gradient -->
     <color name="gradient_mf_blue">#01579B</color>
     <color name="gradient_mf_green">#00695C</color>
