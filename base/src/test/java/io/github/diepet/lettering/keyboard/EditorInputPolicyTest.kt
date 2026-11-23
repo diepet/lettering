@@ -176,7 +176,7 @@ class EditorInputPolicyTest {
             return true
         }
 
-        override fun deleteSurroundingText(beforeLength: Int, afterLength: Int): Boolean {
+        override fun deleteCodePoints(beforeLength: Int, afterLength: Int): Boolean {
             deletions.add(beforeLength to afterLength)
             return true
         }

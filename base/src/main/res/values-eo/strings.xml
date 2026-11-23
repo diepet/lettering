@@ -73,4 +73,16 @@
     <string name="label_developer">Programisto</string>
     <string name="label_settings">Preferoj de Uzanto</string>
     <string name="title_activity_settings">Agordoj</string>
+    <string name="clear_text">Forviŝi la tekston</string>
+    <string name="toggle_style">Ŝalti aŭ malŝalti tekststilon</string>
+    <string name="move_to_top">Movi %1$s al la komenco</string>
+    <string name="move_to_bottom">Movi %1$s al la fino</string>
+    <string name="key_shift">Majuskliga klavo</string>
+    <string name="key_caps_lock">Majuskla baskulo</string>
+    <string name="key_enter">Eniga klavo</string>
+    <string name="key_delete">Retropaŝo</string>
+    <string name="key_space">Spaceto</string>
+    <string name="key_symbols">Ciferoj kaj simboloj</string>
+    <string name="key_letters">Literoj</string>
+    <string name="key_minus">Minuso</string>
 </resources>

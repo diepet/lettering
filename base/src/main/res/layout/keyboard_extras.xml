@@ -1,37 +1,35 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/keyboard_extras"
-    android:background="?attr/extras_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:paddingTop="3dp"
     android:paddingBottom="1dp"
-    android:paddingStart="4dp"
-    android:paddingEnd="4dp"
-    tools:ignore="MissingConstraints">
+    android:paddingHorizontal="4dp"
+    android:background="?attr/extras_bg">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageButton
         android:id="@+id/style_button"
         style="@style/kbd_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/kbd_ic_style_off" />
+        android:contentDescription="@string/toggle_style"
+        android:src="@drawable/kbd_ic_style_off" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/stylePicker"
+    <HorizontalScrollView
         android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="@dimen/kbd_icon_button_size"
-        android:background="@drawable/key_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/settings_button"
-        app:layout_constraintStart_toEndOf="@+id/style_button"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:scrollbars="none"
+        android:background="@drawable/key_normal">
+        <LinearLayout
+            android:id="@+id/stylePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageButton
         android:id="@+id/settings_button"
         style="@style/kbd_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/kbd_ic_settings" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:contentDescription="@string/title_activity_settings"
+        android:src="@drawable/kbd_ic_settings" />
+</LinearLayout>

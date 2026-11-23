@@ -2,12 +2,6 @@ package io.github.diepet.lettering.keyboard
 
 object Constants {
 
-    // Keyboard views
-    const val ALPHA_KBD = 0
-    const val NUMBER_KBD = 1
-    const val MATH_KBD = 2
-    const val PHONE_KBD = 3
-
     // Alpha keyboard layouts
     const val QWERTY = 1
     const val AZERTY = 2
@@ -21,14 +15,15 @@ object Constants {
     const val AUTO = 3
     const val DEFAULT_THEME = AUTO
 
-    // key codes
+    // Key actions use negative values, outside the Unicode range.
+    const val SHIFT = -1
+    const val ENTER = -4
+    const val DELETE = -5
     const val ALPHA_KEYBOARD_KEYCODE = -10
     const val SECONDARY_KBD_KEYCODE = -11
     const val KEYCODE_SPACE = 32
-    const val KEYCODE_MINUS = 45
 
     // other
-    const val PROCESS_HARD_KEYS = true
     const val DOUBLETAP_MAX_DELAY_MS = 500L
     const val VIBRATION_DURATION_MS = 25L
     const val LONG_PRESS = 400L

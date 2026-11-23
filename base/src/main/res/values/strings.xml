@@ -40,6 +40,19 @@
     <string name="appearance_auto">Automatic</string>
     <string name="long_keypress_millis">Long key press (milliseconds)</string>
 
+    <string name="clear_text">Clear text</string>
+    <string name="toggle_style">Toggle text style</string>
+    <string name="move_to_top">Move %1$s to top</string>
+    <string name="move_to_bottom">Move %1$s to bottom</string>
+    <string name="key_shift">Shift</string>
+    <string name="key_caps_lock">Caps lock</string>
+    <string name="key_enter">Enter</string>
+    <string name="key_delete">Backspace</string>
+    <string name="key_space">Space</string>
+    <string name="key_symbols">Numbers and symbols</string>
+    <string name="key_letters">Letters</string>
+    <string name="key_minus">Minus</string>
+
     <string name="alternates_for_a">àáâäæãåā</string>
     <string name="alternates_for_c">çćč</string>
     <string name="alternates_for_e">èéêëēėę</string>

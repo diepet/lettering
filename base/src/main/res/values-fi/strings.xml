@@ -74,4 +74,16 @@
     <string name="label_developer">Kehittäjä</string>
     <string name="label_settings">Käyttäjäasetukset</string>
     <string name="title_activity_settings">Asetukset</string>
+    <string name="clear_text">Tyhjennä teksti</string>
+    <string name="toggle_style">Ota tekstityyli käyttöön tai poista se käytöstä</string>
+    <string name="move_to_top">Siirrä %1$s alkuun</string>
+    <string name="move_to_bottom">Siirrä %1$s loppuun</string>
+    <string name="key_shift">Vaihto</string>
+    <string name="key_caps_lock">Vaihtolukko</string>
+    <string name="key_enter">Enter</string>
+    <string name="key_delete">Askelpalautin</string>
+    <string name="key_space">Välilyönti</string>
+    <string name="key_symbols">Numerot ja symbolit</string>
+    <string name="key_letters">Kirjaimet</string>
+    <string name="key_minus">Miinus</string>
 </resources>

@@ -55,4 +55,16 @@
     <string name="label_developer">Desenvolupador</string>
     <string name="label_settings">Preferències de l\'usuari</string>
     <string name="title_activity_settings">Configuració</string>
+    <string name="clear_text">Esborra el text</string>
+    <string name="toggle_style">Activa o desactiva l’estil de text</string>
+    <string name="move_to_top">Mou %1$s al principi</string>
+    <string name="move_to_bottom">Mou %1$s al final</string>
+    <string name="key_shift">Majúscules</string>
+    <string name="key_caps_lock">Bloqueig de majúscules</string>
+    <string name="key_enter">Retorn</string>
+    <string name="key_delete">Retrocés</string>
+    <string name="key_space">Espai</string>
+    <string name="key_symbols">Números i símbols</string>
+    <string name="key_letters">Lletres</string>
+    <string name="key_minus">Menys</string>
 </resources>

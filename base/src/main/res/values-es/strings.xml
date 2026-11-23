@@ -58,4 +58,16 @@
 \nUtilice las flechas para subir o bajar
 \n
 \nDesactive para ocultar el estilo del teclado"</string>
+    <string name="clear_text">Borrar texto</string>
+    <string name="toggle_style">Activar o desactivar el estilo de texto</string>
+    <string name="move_to_top">Mover %1$s al principio</string>
+    <string name="move_to_bottom">Mover %1$s al final</string>
+    <string name="key_shift">Mayúsculas</string>
+    <string name="key_caps_lock">Bloqueo de mayúsculas</string>
+    <string name="key_enter">Intro</string>
+    <string name="key_delete">Retroceso</string>
+    <string name="key_space">Espacio</string>
+    <string name="key_symbols">Números y símbolos</string>
+    <string name="key_letters">Letras</string>
+    <string name="key_minus">Menos</string>
 </resources>

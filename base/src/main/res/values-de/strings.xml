@@ -73,4 +73,16 @@
     <string name="label_developer">Entwickler</string>
     <string name="label_settings">Konfiguration</string>
     <string name="title_activity_settings">Einstellungen</string>
+    <string name="clear_text">Text löschen</string>
+    <string name="toggle_style">Textstil ein- oder ausschalten</string>
+    <string name="move_to_top">%1$s an den Anfang verschieben</string>
+    <string name="move_to_bottom">%1$s ans Ende verschieben</string>
+    <string name="key_shift">Umschalttaste</string>
+    <string name="key_caps_lock">Feststelltaste</string>
+    <string name="key_enter">Eingabetaste</string>
+    <string name="key_delete">Rücktaste</string>
+    <string name="key_space">Leertaste</string>
+    <string name="key_symbols">Zahlen und Symbole</string>
+    <string name="key_letters">Buchstaben</string>
+    <string name="key_minus">Minus</string>
 </resources>

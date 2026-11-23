@@ -15,29 +15,31 @@
         android:usesCleartextTraffic="false"
         android:theme="@style/AppTheme">
         <activity
-            android:name="io.github.diepet.lettering.SplashScreen"
-            android:theme="@style/SplashTheme"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="io.github.diepet.lettering.MainActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity-alias
+            android:name=".SplashScreen"
+            android:targetActivity=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
         <activity
-            android:launchMode="singleInstance"
+            android:exported="true"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:name="io.github.diepet.lettering.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppToolbarTheme" />
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".settings.StyleConfigActivity"
+            android:label="@string/configure_styles" />
 
         <service android:name="io.github.diepet.lettering.keyboard.MyInputMethodService"
             android:permission="android.permission.BIND_INPUT_METHOD"

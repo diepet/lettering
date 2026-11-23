@@ -8,7 +8,7 @@ import io.github.diepet.lettering.styles.AppTextStyle
 internal interface EditorInputConnection {
     fun getTextBeforeCursor(length: Int, flags: Int): CharSequence?
     fun commitText(text: CharSequence, newCursorPosition: Int): Boolean
-    fun deleteSurroundingText(beforeLength: Int, afterLength: Int): Boolean
+    fun deleteCodePoints(beforeLength: Int, afterLength: Int): Boolean
 }
 
 internal class FrameworkEditorInputConnection(
@@ -20,8 +20,9 @@ internal class FrameworkEditorInputConnection(
     override fun commitText(text: CharSequence, newCursorPosition: Int): Boolean =
         inputConnection.commitText(text, newCursorPosition)
 
-    override fun deleteSurroundingText(beforeLength: Int, afterLength: Int): Boolean =
-        inputConnection.deleteSurroundingText(beforeLength, afterLength)
+    override fun deleteCodePoints(beforeLength: Int, afterLength: Int): Boolean =
+        inputConnection.deleteSurroundingTextInCodePoints(beforeLength, afterLength) ||
+            inputConnection.deleteSurroundingText(beforeLength, afterLength)
 }
 
 internal data class SelectionSnapshot(
@@ -127,8 +128,8 @@ internal fun deleteBackspace(
 
     val reverse = reverseCursorDirection && !isPasswordField
     return if (reverse) {
-        connection.deleteSurroundingText(0, 1)
+        connection.deleteCodePoints(0, 1)
     } else {
-        connection.deleteSurroundingText(1, 0)
+        connection.deleteCodePoints(1, 0)
     }
 }

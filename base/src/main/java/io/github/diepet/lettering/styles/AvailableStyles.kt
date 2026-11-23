@@ -4,8 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.content.res.TypedArray
-import androidx.annotation.StyleableRes
-import androidx.preference.PreferenceManager
+import io.github.diepet.lettering.letteringPreferences
 import io.github.diepet.lettering.R
 import java.util.*
 import kotlin.collections.HashSet
@@ -54,7 +53,7 @@ object AvailableStyles {
         disabledList.clear()
         styleOrder.clear()
         val res = ctx.resources
-        prefs = PreferenceManager.getDefaultSharedPreferences(ctx)
+        prefs = ctx.letteringPreferences
         restoreDisabledList()
         restoreOrder()
         initCharsetFonts(res, res.obtainTypedArray(R.array.charset_styles))
@@ -143,15 +142,15 @@ object AvailableStyles {
      */
     private fun initCharsetFonts(res: Resources, ta: TypedArray) {
 
-        @StyleableRes val nameIndex = res.getInteger(R.integer.CharsetNameIndex)
-        @StyleableRes val reverseIndex = res.getInteger(R.integer.CharsetReverseIndex)
-        @StyleableRes val charsetIndex = res.getInteger(R.integer.CharsetIndex)
+        val nameIndex = res.getInteger(R.integer.CharsetNameIndex)
+        val reverseIndex = res.getInteger(R.integer.CharsetReverseIndex)
+        val charsetIndex = res.getInteger(R.integer.CharsetIndex)
 
         for (i in 0 until ta.length()) {
             val id = ta.getResourceId(i, 0)
             if (id > 0) {
                 val styleDef = res.obtainTypedArray(id)
-                val styleId = styleDef.getString(nameIndex) + i.toShort();
+                val styleId = styleDef.getString(nameIndex) + i.toShort()
                 val name = styleDef.getString(nameIndex)
                 val charset = res.getStringArray(styleDef.getResourceId(charsetIndex, 0))
                 val reversed = styleDef.getBoolean(reverseIndex, false)
@@ -174,9 +173,9 @@ object AvailableStyles {
     private fun initAccentStyles(res: Resources, ta: TypedArray) {
 
         // Initialize accented styles
-        @StyleableRes val accentIdIndex = res.getInteger(R.integer.AccentIdIndex)
-        @StyleableRes val accentNameIndex = res.getInteger(R.integer.AccentNameIndex)
-        @StyleableRes val accentCharIndex = res.getInteger(R.integer.AccentValue)
+        val accentIdIndex = res.getInteger(R.integer.AccentIdIndex)
+        val accentNameIndex = res.getInteger(R.integer.AccentNameIndex)
+        val accentCharIndex = res.getInteger(R.integer.AccentValue)
 
         for (i in 0 until ta.length()) {
             val id = ta.getResourceId(i, 0)

@@ -22,6 +22,9 @@ abstract class AppTextStyle(
     val styleId: String
         get() = id
 
+    val displayName: String
+        get() = name
+
     open val styledName: String
         get() = encodedName
 

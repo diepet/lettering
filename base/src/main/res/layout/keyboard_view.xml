@@ -2,10 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/keyboard_layout"
-    style="@style/KeyboardTheme"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
     android:background="?attr/kbd_bg"
     android:orientation="vertical">
 
@@ -15,12 +13,6 @@
         android:id="@+id/keyboard_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/kbd_bg"
-        android:keyBackground="@drawable/key_background"
-        android:keyPreviewLayout="@null"
-        android:keyTextSize="24sp"
-        android:keyTextColor="?attr/kbd_text_color"
-        android:popupLayout="@layout/keyboard_popup"
-        android:shadowRadius="0" />
+        android:background="?attr/kbd_bg" />
 
 </LinearLayout>

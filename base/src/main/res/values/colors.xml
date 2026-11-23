@@ -22,7 +22,6 @@
 
     <!-- default keyboard colors -->
     <color name="default_kbd_bg">@color/light_kbd_bg</color>
-    <color name="default_kbd_preview_bg">@color/light_kbd_preview_bg</color>
     <color name="default_kbd_text_color">@color/light_kbd_text_color</color>
     <color name="default_key_border_color">@color/light_key_border_color</color>
     <color name="default_key_bg">@color/light_key_bg</color>
@@ -32,7 +31,6 @@
 
     <!-- light theme keyboard colors -->
     <color name="light_kbd_bg">#eeeeee</color>
-    <color name="light_kbd_preview_bg">#454545</color>
     <color name="light_kbd_text_color">#111</color>
     <color name="light_key_border_color">#fff</color>
     <color name="light_key_bg">#fff</color>
@@ -42,7 +40,6 @@
 
     <!-- dark theme keyboard colors -->
     <color name="dark_kbd_bg">#28282D</color>
-    <color name="dark_kbd_preview_bg">#454545</color>
     <color name="dark_kbd_text_color">@android:color/white</color>
     <color name="dark_key_border_color">#3B3B42</color>
     <color name="dark_key_bg">#3B3B42</color>

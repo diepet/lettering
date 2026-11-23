@@ -1,37 +1,31 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginTop="2dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginBottom="2dp"
-    android:background="@drawable/bg_config_item"
     android:minHeight="@dimen/style_config_row_minHeight"
-    tools:ignore="MissingConstraints">
+    android:gravity="center_vertical"
+    android:paddingHorizontal="8dp"
+    android:background="@drawable/bg_config_item">
 
     <TextView
         android:id="@+id/text_value"
-        style="@style/config_style" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="4dp" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/order_btn_down"
         style="@style/config_order_btn"
-        app:icon="@drawable/pref_ic_arrow_down"
-        app:layout_constraintEnd_toStartOf="@id/order_btn_up" />
+        android:src="@drawable/pref_ic_arrow_down" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/order_btn_up"
         style="@style/config_order_btn"
-        app:icon="@drawable/pref_ic_arrow_up"
-        app:layout_constraintEnd_toStartOf="@id/enable_box" />
+        android:src="@drawable/pref_ic_arrow_up" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <Switch
         android:id="@+id/enable_box"
-        style="@style/config_checkbox" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="48dp" />
+</LinearLayout>

@@ -52,4 +52,16 @@
     <string name="label_developer">Разработчик</string>
     <string name="label_settings">Пользовательские настройки</string>
     <string name="title_activity_settings">Настройки</string>
+    <string name="clear_text">Очистить текст</string>
+    <string name="toggle_style">Включить или выключить стиль текста</string>
+    <string name="move_to_top">Переместить %1$s в начало</string>
+    <string name="move_to_bottom">Переместить %1$s в конец</string>
+    <string name="key_shift">Смена регистра</string>
+    <string name="key_caps_lock">Фиксация верхнего регистра</string>
+    <string name="key_enter">Ввод</string>
+    <string name="key_delete">Удалить слева</string>
+    <string name="key_space">Пробел</string>
+    <string name="key_symbols">Цифры и символы</string>
+    <string name="key_letters">Буквы</string>
+    <string name="key_minus">Минус</string>
 </resources>

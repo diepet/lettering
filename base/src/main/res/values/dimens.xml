@@ -3,14 +3,6 @@
 
     <dimen name="match_parent">-1px</dimen>
 
-    <!-- special keyboard key codes (keys with icons) -->
-    <integer name="kbd_shift_key">-1</integer>
-    <integer name="kbd_done_key">-4</integer>
-    <integer name="kbd_backspace_delete">-5</integer>
-    <integer name="kbd_numeric_switch">-11</integer>
-    <integer name="kbd_alpha_switch">-10</integer>
-    <integer name="kbd_space_key">32</integer>
-    <integer name="kbd_minus_key">45</integer>
     <item name="key_icon_ratio" format="float" type="dimen">0.45</item>
 
     <!-- keyboard dimens -->
@@ -20,12 +12,10 @@
     <dimen name="kdb_icon_padding_vertical">4dp</dimen>
     <dimen name="kbd_key_icon_size">24dp</dimen>
     <dimen name="kbd_icon_h_margin">0dp</dimen>
-    <dimen name="kbd_styles_divider_width">2dp</dimen>
     <dimen name="kbd_bg_gap">2dp</dimen>
 
     <!-- main activity dimens -->
     <dimen name="main_card_width">350dp</dimen>
-    <dimen name="main_card_content_width">@dimen/match_parent</dimen>
     <dimen name="main_element_spacing">20dp</dimen>
     <dimen name="main_element_spacing_2x">40dp</dimen>
     <dimen name="main_icon_size">64dp</dimen>
@@ -34,6 +24,5 @@
     <!-- settings -->
     <dimen name="style_config_padding">20dp</dimen>
     <dimen name="style_config_row_minHeight">58dp</dimen>
-    <integer name="style_config_column_count">1</integer>
 
 </resources>

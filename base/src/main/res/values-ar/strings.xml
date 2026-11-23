@@ -55,4 +55,16 @@
     <string name="label_about">حول</string>
     <string name="label_developer">مطوّر</string>
     <string name="label_settings">تفضيلات المستخدم</string>
+    <string name="clear_text">مسح النص</string>
+    <string name="toggle_style">تبديل نمط النص</string>
+    <string name="move_to_top">نقل %1$s إلى الأعلى</string>
+    <string name="move_to_bottom">نقل %1$s إلى الأسفل</string>
+    <string name="key_shift">تبديل حالة الأحرف</string>
+    <string name="key_caps_lock">تثبيت الأحرف الكبيرة</string>
+    <string name="key_enter">إدخال</string>
+    <string name="key_delete">حذف للخلف</string>
+    <string name="key_space">مسافة</string>
+    <string name="key_symbols">الأرقام والرموز</string>
+    <string name="key_letters">الأحرف</string>
+    <string name="key_minus">ناقص</string>
 </resources>

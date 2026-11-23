@@ -90,4 +90,16 @@
     <string name="name_regular">常规</string>
     <string name="name_spongemock">Spongemock</string>
     <string name="name_supertiny">超小体</string>
+    <string name="clear_text">清除文本</string>
+    <string name="toggle_style">切换文本样式</string>
+    <string name="move_to_top">将%1$s移至顶部</string>
+    <string name="move_to_bottom">将%1$s移至底部</string>
+    <string name="key_shift">上档键</string>
+    <string name="key_caps_lock">大写锁定</string>
+    <string name="key_enter">回车</string>
+    <string name="key_delete">退格</string>
+    <string name="key_space">空格</string>
+    <string name="key_symbols">数字和符号</string>
+    <string name="key_letters">字母</string>
+    <string name="key_minus">减号</string>
 </resources>

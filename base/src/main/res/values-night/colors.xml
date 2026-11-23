@@ -20,7 +20,6 @@
 
     <!-- default keyboard colors -->
     <color name="default_kbd_bg">@color/dark_kbd_bg</color>
-    <color name="default_kbd_preview_bg">@color/dark_kbd_preview_bg</color>
     <color name="default_kbd_text_color">@color/dark_kbd_text_color</color>
     <color name="default_key_border_color">@color/dark_key_border_color</color>
     <color name="default_key_bg">@color/dark_key_bg</color>

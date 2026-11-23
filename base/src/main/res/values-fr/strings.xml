@@ -72,4 +72,16 @@
     <string name="label_developer">Développeur</string>
     <string name="label_settings">Préférences utilisateur</string>
     <string name="title_activity_settings">Paramètres</string>
+    <string name="clear_text">Effacer le texte</string>
+    <string name="toggle_style">Activer ou désactiver le style de texte</string>
+    <string name="move_to_top">Déplacer %1$s en tête de liste</string>
+    <string name="move_to_bottom">Déplacer %1$s en fin de liste</string>
+    <string name="key_shift">Majuscule</string>
+    <string name="key_caps_lock">Verrouillage des majuscules</string>
+    <string name="key_enter">Entrée</string>
+    <string name="key_delete">Retour arrière</string>
+    <string name="key_space">Espace</string>
+    <string name="key_symbols">Chiffres et symboles</string>
+    <string name="key_letters">Lettres</string>
+    <string name="key_minus">Moins</string>
 </resources>

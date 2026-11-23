@@ -1,9 +1,8 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/help"
         android:icon="@drawable/pref_ic_information_outline_white"
         android:title="@string/help"
-        app:showAsAction="always" />
+        android:showAsAction="always" />
 </menu>

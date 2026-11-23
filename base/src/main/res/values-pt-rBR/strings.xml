@@ -72,4 +72,16 @@
     <string name="title_activity_settings">Configurações</string>
     <string name="name_spongemock">Meme do Bob Esponja</string>
     <string name="label_go_key">Vai</string>
+    <string name="clear_text">Limpar texto</string>
+    <string name="toggle_style">Ativar ou desativar o estilo de texto</string>
+    <string name="move_to_top">Mover %1$s para o início</string>
+    <string name="move_to_bottom">Mover %1$s para o fim</string>
+    <string name="key_shift">Maiúsculas</string>
+    <string name="key_caps_lock">Fixar maiúsculas</string>
+    <string name="key_enter">Enter</string>
+    <string name="key_delete">Apagar</string>
+    <string name="key_space">Espaço</string>
+    <string name="key_symbols">Números e símbolos</string>
+    <string name="key_letters">Letras</string>
+    <string name="key_minus">Menos</string>
 </resources>

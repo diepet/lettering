@@ -72,4 +72,16 @@
     <string name="label_developer">Utvikler</string>
     <string name="label_settings">Brukerinnstillinger</string>
     <string name="title_activity_settings">Innstillinger</string>
+    <string name="clear_text">Tøm teksten</string>
+    <string name="toggle_style">Slå tekststil av eller på</string>
+    <string name="move_to_top">Flytt %1$s øverst</string>
+    <string name="move_to_bottom">Flytt %1$s nederst</string>
+    <string name="key_shift">Skift</string>
+    <string name="key_caps_lock">Caps Lock</string>
+    <string name="key_enter">Enter</string>
+    <string name="key_delete">Tilbake</string>
+    <string name="key_space">Mellomrom</string>
+    <string name="key_symbols">Tall og symboler</string>
+    <string name="key_letters">Bokstaver</string>
+    <string name="key_minus">Minus</string>
 </resources>

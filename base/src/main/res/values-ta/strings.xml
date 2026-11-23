@@ -71,4 +71,16 @@
     <string name="label_about">விவரங்கள்</string>
     <string name="label_settings">பயனர் விருப்பத்தேர்வுகள்</string>
     <string name="title_activity_settings">அமைப்புகள்</string>
+    <string name="clear_text">உரையை அழி</string>
+    <string name="toggle_style">உரைப் பாணியை இயக்கு அல்லது முடக்கு</string>
+    <string name="move_to_top">%1$s ஐ முதலிடத்திற்கு நகர்த்து</string>
+    <string name="move_to_bottom">%1$s ஐக் கடைசி இடத்திற்கு நகர்த்து</string>
+    <string name="key_shift">உயர்த்தி</string>
+    <string name="key_caps_lock">பெரிய எழுத்துப் பூட்டு</string>
+    <string name="key_enter">உள்ளிடு</string>
+    <string name="key_delete">பின்னழிப்பு</string>
+    <string name="key_space">இடைவெளி</string>
+    <string name="key_symbols">எண்களும் குறியீடுகளும்</string>
+    <string name="key_letters">எழுத்துகள்</string>
+    <string name="key_minus">கழித்தல்</string>
 </resources>
