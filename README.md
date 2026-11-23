@@ -10,7 +10,7 @@ Lettering is for my daughter, Ma~, who wisely decided she didn't need a keyboard
 
 ## First-time setup
 
-These commands are for the Linux zsh setup used for this repository. If your SDK or JDK is installed elsewhere, change the paths below. This project uses Gradle 8.14.8 and Android Gradle Plugin 8.13.2, which require JDK 17; Java and Kotlin sources target Java 17.
+These commands are for the Linux zsh setup used for this repository. If your SDK or JDK is installed elsewhere, change the paths below. This project uses Gradle 9.6.1 and Android Gradle Plugin 9.4.1, with JDK 17 as the minimum. Java and Kotlin sources target Java 17.
 
 Add these lines to `~/.zshrc`, then open a new terminal or run `source ~/.zshrc`:
 
