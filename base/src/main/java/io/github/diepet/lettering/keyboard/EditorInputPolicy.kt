@@ -9,6 +9,7 @@ internal interface EditorInputConnection {
     fun getTextBeforeCursor(length: Int, flags: Int): CharSequence?
     fun commitText(text: CharSequence, newCursorPosition: Int): Boolean
     fun deleteCodePoints(beforeLength: Int, afterLength: Int): Boolean
+    fun deleteTextBeforeCursor(length: Int): Boolean
 }
 
 internal class FrameworkEditorInputConnection(
@@ -23,6 +24,9 @@ internal class FrameworkEditorInputConnection(
     override fun deleteCodePoints(beforeLength: Int, afterLength: Int): Boolean =
         inputConnection.deleteSurroundingTextInCodePoints(beforeLength, afterLength) ||
             inputConnection.deleteSurroundingText(beforeLength, afterLength)
+
+    override fun deleteTextBeforeCursor(length: Int): Boolean =
+        inputConnection.deleteSurroundingText(length, 0)
 }
 
 internal data class SelectionSnapshot(
@@ -126,10 +130,13 @@ internal fun deleteBackspace(
         return connection.commitText("", 1)
     }
 
-    val reverse = reverseCursorDirection && !isPasswordField
-    return if (reverse) {
-        connection.deleteCodePoints(0, 1)
-    } else {
-        connection.deleteCodePoints(1, 0)
+    if (isPasswordField) return connection.deleteCodePoints(1, 0)
+    if (reverseCursorDirection) return connection.deleteCodePoints(0, 1)
+
+    // The boxed letter occupies two UTF-16 units and its text presentation selector adds one.
+    return when (val before = connection.getTextBeforeCursor(3, 0)?.toString()) {
+        "🅰\uFE0E", "🅱\uFE0E", "🅾\uFE0E", "🅿\uFE0E" ->
+            connection.deleteTextBeforeCursor(before.length)
+        else -> connection.deleteCodePoints(1, 0)
     }
 }

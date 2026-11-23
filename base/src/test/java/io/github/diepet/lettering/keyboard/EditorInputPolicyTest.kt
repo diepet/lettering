@@ -82,7 +82,7 @@ class EditorInputPolicyTest {
     }
 
     @Test
-    fun backspaceUsesEditorSelectionAndBothCollapsedDirectionsWithoutReadingText() {
+    fun backspaceUsesEditorSelectionAndBothCollapsedDirections() {
         val connection = RecordingConnection()
 
         deleteBackspace(
@@ -91,6 +91,7 @@ class EditorInputPolicyTest {
             reverseCursorDirection = false,
             isPasswordField = false
         )
+        assertEquals(0, connection.beforeCursorRequests)
         deleteBackspace(
             connection,
             SelectionSnapshot.from(4, 4),
@@ -106,7 +107,7 @@ class EditorInputPolicyTest {
 
         assertEquals(listOf(""), connection.committedText)
         assertEquals(listOf(1 to 0, 0 to 1), connection.deletions)
-        assertEquals(0, connection.beforeCursorRequests)
+        assertEquals(1, connection.beforeCursorRequests)
     }
 
     @Test
@@ -144,7 +145,7 @@ class EditorInputPolicyTest {
         }
 
         assertEquals(listOf(1 to 0, 1 to 0, 1 to 0), connection.deletions)
-        assertEquals(0, connection.beforeCursorRequests)
+        assertEquals(3, connection.beforeCursorRequests)
     }
 
     private class TestStyle(
@@ -179,6 +180,10 @@ class EditorInputPolicyTest {
         override fun deleteCodePoints(beforeLength: Int, afterLength: Int): Boolean {
             deletions.add(beforeLength to afterLength)
             return true
+        }
+
+        override fun deleteTextBeforeCursor(length: Int): Boolean {
+            error("Unexpected UTF-16 deletion")
         }
     }
 }
