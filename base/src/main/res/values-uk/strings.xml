@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_settings">Налаштування</string>
+    <string name="label_settings">Налаштування користувача</string>
+    <string name="label_developer">Розробник</string>
+    <string name="label_about">Про застосунок</string>
+    <string name="label_version">Версія</string>
+    <string name="label_rate_app">Оцінити застосунок</string>
+    <string name="label_feedback">Надіслати відгук</string>
+    <string name="key_vibrations">Вібрація клавіш</string>
+    <string name="feedback_summary">Повідомити про помилки або запропонувати функції</string>
+    <string name="source_code">Вихідний код</string>
+    <string name="source_summary">Запити на зміни вітаються</string>
+    <string name="enabled">Увімкнено</string>
+    <string name="disabled">Вимкнено</string>
+    <string name="intro_header">Вітаємо у
+клавіатурі
+Lettering!</string>
+    <string name="intro_subtitle">Як користуватися</string>
+    <string name="enable_keyboard">1. Увімкніть клавіатуру</string>
+    <string name="select_keyboard">2. Виберіть клавіатуру</string>
+    <string name="now_try_it">3. Спробуйте — введіть текст тут:</string>
+    <string name="setting_keyboard_layout">Розкладка клавіатури</string>
+    <string name="configure_styles">Налаштувати стилі тексту</string>
+    <string name="configure_styles_help">Як налаштувати стилі тексту</string>
+    <string name="config_styles_summary">Показувати, приховувати й упорядковувати стилі</string>
+    <string name="config_instructions">\nНатисніть і утримуйте, а потім перетягніть для зміни порядку\n\nСтрілками переміщуйте елементи вгору або вниз\n\nВимкніть стиль, щоб приховати його на клавіатурі</string>
+    <string name="label_send_key">Надіслати</string>
+    <string name="label_next_key">Далі</string>
+    <string name="label_go_key">Перейти</string>
+    <string name="ok">OK</string>
+    <string name="help">Довідка</string>
+    <string name="key_height">Висота клавіш (%)</string>
+    <string name="appearance">Вигляд</string>
+    <string name="appearance_light">Світла тема</string>
+    <string name="appearance_dark">Темна тема</string>
+    <string name="appearance_auto">Автоматично</string>
+    <string name="long_keypress_millis">Тривале натискання (мілісекунди)</string>
+    <string name="clear_text">Очистити текст</string>
+    <string name="toggle_style">Увімкнути або вимкнути стиль тексту</string>
+    <string name="move_to_top">Перемістити %1$s на початок</string>
+    <string name="move_to_bottom">Перемістити %1$s у кінець</string>
+    <string name="key_shift">Shift</string>
+    <string name="key_caps_lock">Caps Lock</string>
+    <string name="key_enter">Введення</string>
+    <string name="key_delete">Backspace</string>
+    <string name="key_space">Пробіл</string>
+    <string name="key_symbols">Цифри й символи</string>
+    <string name="key_letters">Літери</string>
+    <string name="key_minus">Мінус</string>
+</resources>

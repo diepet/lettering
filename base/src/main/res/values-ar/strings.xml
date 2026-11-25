@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Lettering</string>
+    <string name="developer">diepet</string>
+    <string name="appearance">المظهر</string>
+    <string name="appearance_light">المظهر الفاتح</string>
+    <string name="appearance_dark">المظهر الداكن</string>
+    <string name="appearance_auto">تلقائي</string>
+    <string name="kbd_layout_dvorak">DVORAK</string>
+    <string name="long_keypress_millis">مدة الضغط المطوّل (مللي ثانية)</string>
+    <string name="name_maritime">بحري</string>
+    <string name="name_zalgo">Zalgo</string>
     <string name="title_activity_settings">الإعدادات</string>
     <string name="name_supertiny">صغير جداً</string>
     <string name="name_spongemock">Spongemock</string>

@@ -4,6 +4,8 @@
 
 Lettering is an Android keyboard for applying expressive Unicode text styles while you type. It includes more than 30 styles, configurable keyboard layouts, and style ordering controls.
 
+The app menu is available in Arabic, Chinese (Simplified), English, French, German, Italian, Japanese, Portuguese, Russian, Spanish, and Ukrainian. The app follows the language selected for Android.
+
 ## Why Lettering exists
 
 Lettering is for my daughter, Ma~, who wisely decided she didn't need a keyboard app that might keep a diary of everything she typed. So I made her one of her own: a little more expressive, a lot more personal, and built with her safety and privacy in mind. Ma~, may your words be bold, your typos be adorable, and your keyboard always mind its manners.
