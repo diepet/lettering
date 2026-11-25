@@ -49,4 +49,8 @@
     <string name="key_symbols">数字と記号</string>
     <string name="key_letters">文字</string>
     <string name="key_minus">マイナス</string>
+
+    <string name="search_emoji">絵文字を検索</string>
+    <string name="close_emoji_search">絵文字検索を閉じる</string>
+    <string name="no_emoji_search_results">絵文字が見つかりません</string>
 </resources>

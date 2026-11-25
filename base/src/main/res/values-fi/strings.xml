@@ -87,4 +87,8 @@
     <string name="key_symbols">Numerot ja symbolit</string>
     <string name="key_letters">Kirjaimet</string>
     <string name="key_minus">Miinus</string>
+
+    <string name="search_emoji">Hae emojia</string>
+    <string name="close_emoji_search">Sulje emoji-haku</string>
+    <string name="no_emoji_search_results">Emojeita ei löytynyt</string>
 </resources>

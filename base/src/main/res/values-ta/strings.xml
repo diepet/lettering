@@ -84,4 +84,8 @@
     <string name="key_symbols">எண்களும் குறியீடுகளும்</string>
     <string name="key_letters">எழுத்துகள்</string>
     <string name="key_minus">கழித்தல்</string>
+
+    <string name="search_emoji">எமோஜியைத் தேடு</string>
+    <string name="close_emoji_search">எமோஜி தேடலை மூடு</string>
+    <string name="no_emoji_search_results">எமோஜிகள் எதுவும் கிடைக்கவில்லை</string>
 </resources>

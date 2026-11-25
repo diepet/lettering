@@ -85,4 +85,8 @@
     <string name="key_symbols">Tall og symboler</string>
     <string name="key_letters">Bokstaver</string>
     <string name="key_minus">Minus</string>
+
+    <string name="search_emoji">Søk etter emoji</string>
+    <string name="close_emoji_search">Lukk emoji-søk</string>
+    <string name="no_emoji_search_results">Ingen emoji funnet</string>
 </resources>

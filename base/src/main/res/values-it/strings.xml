@@ -49,4 +49,8 @@ Lettering!</string>
     <string name="key_symbols">Numeri e simboli</string>
     <string name="key_letters">Lettere</string>
     <string name="key_minus">Meno</string>
+
+    <string name="search_emoji">Cerca emoji</string>
+    <string name="close_emoji_search">Chiudi la ricerca emoji</string>
+    <string name="no_emoji_search_results">Nessuna emoji trovata</string>
 </resources>

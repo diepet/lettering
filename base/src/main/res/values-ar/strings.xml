@@ -78,4 +78,8 @@
     <string name="key_symbols">الأرقام والرموز</string>
     <string name="key_letters">الأحرف</string>
     <string name="key_minus">ناقص</string>
+
+    <string name="search_emoji">ابحث عن رمز تعبيري</string>
+    <string name="close_emoji_search">إغلاق البحث عن الرموز التعبيرية</string>
+    <string name="no_emoji_search_results">لم يتم العثور على رموز تعبيرية</string>
 </resources>

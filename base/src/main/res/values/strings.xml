@@ -103,4 +103,8 @@
     <string name="name_supertiny">Supertiny</string>
     <string name="name_zalgo">Zalgo</string>
     <string name="name_maritime">Maritime</string>
+
+    <string name="search_emoji">Search emoji</string>
+    <string name="close_emoji_search">Close emoji search</string>
+    <string name="no_emoji_search_results">No emoji found</string>
 </resources>

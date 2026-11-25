@@ -49,4 +49,8 @@ Lettering!</string>
     <string name="key_symbols">Цифри й символи</string>
     <string name="key_letters">Літери</string>
     <string name="key_minus">Мінус</string>
+
+    <string name="search_emoji">Пошук емодзі</string>
+    <string name="close_emoji_search">Закрити пошук емодзі</string>
+    <string name="no_emoji_search_results">Емодзі не знайдено</string>
 </resources>

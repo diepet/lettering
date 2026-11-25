@@ -103,4 +103,8 @@
     <string name="key_symbols">数字和符号</string>
     <string name="key_letters">字母</string>
     <string name="key_minus">减号</string>
+
+    <string name="search_emoji">搜索表情符号</string>
+    <string name="close_emoji_search">关闭表情符号搜索</string>
+    <string name="no_emoji_search_results">未找到表情符号</string>
 </resources>

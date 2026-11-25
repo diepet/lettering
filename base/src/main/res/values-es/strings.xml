@@ -71,4 +71,8 @@
     <string name="key_symbols">Números y símbolos</string>
     <string name="key_letters">Letras</string>
     <string name="key_minus">Menos</string>
+
+    <string name="search_emoji">Buscar emoji</string>
+    <string name="close_emoji_search">Cerrar búsqueda de emoji</string>
+    <string name="no_emoji_search_results">No se encontraron emojis</string>
 </resources>

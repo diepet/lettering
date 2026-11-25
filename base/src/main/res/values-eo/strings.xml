@@ -86,4 +86,8 @@
     <string name="key_symbols">Ciferoj kaj simboloj</string>
     <string name="key_letters">Literoj</string>
     <string name="key_minus">Minuso</string>
+
+    <string name="search_emoji">Serĉi emoji</string>
+    <string name="close_emoji_search">Fermi emoji-serĉon</string>
+    <string name="no_emoji_search_results">Neniu emoji trovita</string>
 </resources>

@@ -167,6 +167,13 @@ class MyInputMethodService : InputMethodService() {
 
     private fun handleKey(code: Int) {
         if (currentInputConnection == null) return
+        if (keyboardView?.handleEmojiSearchKey(code, shift != ShiftState.OFF) == true) {
+            if (Character.isValidCodePoint(code) && shift == ShiftState.ONCE) {
+                shift = ShiftState.OFF
+                keyboardView?.shiftState = shift
+            }
+            return
+        }
         when (code) {
             Constants.SECONDARY_KBD_KEYCODE -> showPage(if (page == Page.NUMBERS) Page.MATH else Page.NUMBERS)
             Constants.ALPHA_KEYBOARD_KEYCODE -> showPage(Page.LETTERS)
