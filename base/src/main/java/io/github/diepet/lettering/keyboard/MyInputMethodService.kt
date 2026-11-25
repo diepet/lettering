@@ -170,6 +170,7 @@ class MyInputMethodService : InputMethodService() {
         when (code) {
             Constants.SECONDARY_KBD_KEYCODE -> showPage(if (page == Page.NUMBERS) Page.MATH else Page.NUMBERS)
             Constants.ALPHA_KEYBOARD_KEYCODE -> showPage(Page.LETTERS)
+            Constants.EMOJI_PICKER_KEYCODE -> keyboardView?.showEmojiPicker(::commitEmoji)
             Constants.DELETE -> handleDeleteKeyPress()
             Constants.SHIFT -> handleShiftKeyPress()
             Constants.ENTER -> handleDoneKeyPress()
@@ -179,7 +180,7 @@ class MyInputMethodService : InputMethodService() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (event.repeatCount == 0 && keyboardView?.dismissAlternates() == true) return true
+            if (event.repeatCount == 0 && keyboardView?.dismissPopup() == true) return true
         } else {
             metaState = MetaKeyKeyListener.handleKeyDown(metaState, keyCode, event)
             val code = event.getUnicodeChar(MetaKeyKeyListener.getMetaState(metaState))
@@ -267,6 +268,11 @@ class MyInputMethodService : InputMethodService() {
             shift = ShiftState.OFF
             keyboardView?.shiftState = shift
         }
+    }
+
+    private fun commitEmoji(emoji: String) {
+        val inputConnection = currentInputConnection ?: return
+        if (inputConnection.commitText(emoji, 1)) inputSession.markCollapsed()
     }
 
     private fun populateStylePicker() {

@@ -13,6 +13,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.github.diepet.lettering.MainActivity
 import io.github.diepet.lettering.R
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -92,6 +93,23 @@ class LetteringKeyboardViewTest {
         cancelInput()
         tap(375, 210)
         assertEquals(listOf('0'.code, Constants.DELETE, '+'.code, '0'.code), output)
+    }
+
+    @Test
+    fun tappingEmojiKeyEmitsThePickerAction() =
+        withView(KeyboardLayout.forAlphabet(Constants.QWERTY)) { output ->
+            val keyIndex = KeyboardLayout.forAlphabet(Constants.QWERTY).rows.flatten()
+                .indexOfFirst { it.code == Constants.EMOJI_PICKER_KEYCODE }
+            val key = getChildAt(keyIndex)
+            tap(key.left + key.width / 2, key.top + key.height / 2)
+            assertEquals(listOf(Constants.EMOJI_PICKER_KEYCODE), output)
+        }
+
+    @Test
+    fun emojiPickerPopupOpensAndDismisses() = withView(KeyboardLayout.forAlphabet(Constants.QWERTY)) {
+        showEmojiPicker {}
+        assertTrue(dismissPopup())
+        assertFalse(dismissPopup())
     }
 
     @Test

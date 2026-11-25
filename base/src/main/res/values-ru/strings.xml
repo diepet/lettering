@@ -61,6 +61,7 @@
     <string name="key_enter">Ввод</string>
     <string name="key_delete">Удалить слева</string>
     <string name="key_space">Пробел</string>
+    <string name="key_emoji">Эмодзи</string>
     <string name="key_symbols">Цифры и символы</string>
     <string name="key_letters">Буквы</string>
     <string name="key_minus">Минус</string>

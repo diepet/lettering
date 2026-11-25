@@ -25,6 +25,8 @@ internal class KeyboardLayout(val rows: List<List<Key>>) {
             description = R.string.key_enter)
         private val space = Key(Constants.KEYCODE_SPACE, width = 50, icon = R.drawable.kbd_ic_keyboard_space,
             description = R.string.key_space)
+        private val emoji = Key(Constants.EMOJI_PICKER_KEYCODE, width = 10, icon = R.drawable.kbd_ic_emoji,
+            description = R.string.key_emoji)
         private val symbols = Key(Constants.SECONDARY_KBD_KEYCODE, width = 15, icon = R.drawable.kbd_ic_numeric,
             description = R.string.key_symbols)
         private val letters = Key(Constants.ALPHA_KEYBOARD_KEYCODE, width = 15, icon = R.drawable.kbd_ic_alphabetical_variant,
@@ -48,9 +50,10 @@ internal class KeyboardLayout(val rows: List<List<Key>>) {
             Key(char.code, char.toString(), alternates = alternates)
         }
 
-        private fun bottom(switch: Key, left: String, right: String): List<Key> {
-            val spaceWidth = 100 - switch.width - enter.width - 10 * (left.length + right.length)
-            return listOf(switch) + keys(left) + space.copy(width = spaceWidth) + keys(right) + enter
+        private fun bottom(switch: Key, left: String, right: String, includeEmoji: Boolean = true): List<Key> {
+            val emojiKeys = if (includeEmoji) listOf(emoji) else emptyList()
+            val spaceWidth = 100 - switch.width - enter.width - 10 * (left.length + right.length) - emojiKeys.sumOf { it.width }
+            return listOf(switch) + keys(left) + emojiKeys + space.copy(width = spaceWidth) + keys(right) + enter
         }
 
         private fun alphabet(top: String, middle: String, lower: String, left: String = ",", right: String = ".") =
@@ -77,7 +80,7 @@ internal class KeyboardLayout(val rows: List<List<Key>>) {
 
         val math by lazy {
             KeyboardLayout(listOf(keys("~`|•√π÷×¶∆"), keys("£¢€¥^°={}\\"),
-                listOf(symbols) + keys("%©®™✓[]") + delete, bottom(letters, "<", ">")))
+                listOf(symbols) + keys("%©®™✓[]") + delete, bottom(letters, "<", ">", includeEmoji = false)))
         }
 
         val phone by lazy {

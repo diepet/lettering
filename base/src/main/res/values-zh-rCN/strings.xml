@@ -99,6 +99,7 @@
     <string name="key_enter">回车</string>
     <string name="key_delete">退格</string>
     <string name="key_space">空格</string>
+    <string name="key_emoji">表情符号</string>
     <string name="key_symbols">数字和符号</string>
     <string name="key_letters">字母</string>
     <string name="key_minus">减号</string>

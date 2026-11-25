@@ -81,6 +81,7 @@
     <string name="key_enter">Enter</string>
     <string name="key_delete">Apagar</string>
     <string name="key_space">Espaço</string>
+    <string name="key_emoji">Emoji</string>
     <string name="key_symbols">Números e símbolos</string>
     <string name="key_letters">Letras</string>
     <string name="key_minus">Menos</string>

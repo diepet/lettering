@@ -74,6 +74,7 @@
     <string name="key_enter">إدخال</string>
     <string name="key_delete">حذف للخلف</string>
     <string name="key_space">مسافة</string>
+    <string name="key_emoji">رمز تعبيري</string>
     <string name="key_symbols">الأرقام والرموز</string>
     <string name="key_letters">الأحرف</string>
     <string name="key_minus">ناقص</string>

@@ -21,6 +21,7 @@ object Constants {
     const val DELETE = -5
     const val ALPHA_KEYBOARD_KEYCODE = -10
     const val SECONDARY_KBD_KEYCODE = -11
+    const val EMOJI_PICKER_KEYCODE = -12
     const val KEYCODE_SPACE = 32
 
     // other

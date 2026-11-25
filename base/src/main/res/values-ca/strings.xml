@@ -64,6 +64,7 @@
     <string name="key_enter">Retorn</string>
     <string name="key_delete">Retrocés</string>
     <string name="key_space">Espai</string>
+    <string name="key_emoji">Emoji</string>
     <string name="key_symbols">Números i símbols</string>
     <string name="key_letters">Lletres</string>
     <string name="key_minus">Menys</string>

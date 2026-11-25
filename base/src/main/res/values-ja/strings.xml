@@ -45,6 +45,7 @@
     <string name="key_enter">改行</string>
     <string name="key_delete">削除</string>
     <string name="key_space">スペース</string>
+    <string name="key_emoji">絵文字</string>
     <string name="key_symbols">数字と記号</string>
     <string name="key_letters">文字</string>
     <string name="key_minus">マイナス</string>

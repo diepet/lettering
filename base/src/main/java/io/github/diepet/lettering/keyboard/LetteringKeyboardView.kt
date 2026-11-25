@@ -18,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import androidx.emoji2.emojipicker.EmojiPickerView
 import io.github.diepet.lettering.R
 import kotlin.math.roundToInt
 
@@ -266,7 +267,7 @@ class LetteringKeyboardView(context: Context, attrs: AttributeSet?) : ViewGroup(
         }
         val choices = resources.getString(child.key.alternates)
         if (choices.isEmpty()) return false
-        dismissAlternates()
+        dismissPopup()
         val buttonWidth = minOf(child.face.width(), width / choices.length)
         val strip = LinearLayout(context).apply {
             val color = TypedValue()
@@ -283,7 +284,7 @@ class LetteringKeyboardView(context: Context, attrs: AttributeSet?) : ViewGroup(
                 setPadding(0, 0, 0, 0)
                 setBackgroundResource(R.drawable.key_background)
                 setOnClickListener {
-                    dismissAlternates()
+                    dismissPopup()
                     onKey(character.code)
                 }
             }, buttonWidth, child.height)
@@ -302,7 +303,28 @@ class LetteringKeyboardView(context: Context, attrs: AttributeSet?) : ViewGroup(
         return true
     }
 
-    internal fun dismissAlternates(): Boolean {
+    internal fun showEmojiPicker(onEmojiPicked: (String) -> Unit) {
+        dismissPopup()
+        val picker = EmojiPickerView(context).apply {
+            emojiGridColumns = 9
+            setOnEmojiPickedListener { item ->
+                dismissPopup()
+                onEmojiPicked(item.emoji)
+            }
+        }
+        val popupHeight = resources.getDimensionPixelSize(R.dimen.emoji_picker_height)
+        val window = PopupWindow(picker, width, popupHeight, true).apply {
+            isOutsideTouchable = true
+            inputMethodMode = PopupWindow.INPUT_METHOD_NOT_NEEDED
+            elevation = resources.displayMetrics.density * 8
+            setBackgroundDrawable(requireNotNull(context.getDrawable(R.drawable.emoji_picker_background)))
+            setOnDismissListener { if (popup === this) popup = null }
+        }
+        popup = window
+        window.showAsDropDown(this, 0, -popupHeight - height, Gravity.START)
+    }
+
+    internal fun dismissPopup(): Boolean {
         val window = popup ?: return false
         window.dismiss()
         return true
@@ -311,7 +333,7 @@ class LetteringKeyboardView(context: Context, attrs: AttributeSet?) : ViewGroup(
     internal fun cancelInput() {
         clearPressedKey()
         pointer = MotionEvent.INVALID_POINTER_ID
-        dismissAlternates()
+        dismissPopup()
         lastCycleKey = null
     }
 

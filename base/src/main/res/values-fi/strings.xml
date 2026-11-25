@@ -83,6 +83,7 @@
     <string name="key_enter">Enter</string>
     <string name="key_delete">Askelpalautin</string>
     <string name="key_space">Välilyönti</string>
+    <string name="key_emoji">Emoji</string>
     <string name="key_symbols">Numerot ja symbolit</string>
     <string name="key_letters">Kirjaimet</string>
     <string name="key_minus">Miinus</string>

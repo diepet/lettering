@@ -82,6 +82,7 @@
     <string name="key_enter">Eingabetaste</string>
     <string name="key_delete">Rücktaste</string>
     <string name="key_space">Leertaste</string>
+    <string name="key_emoji">Emoji</string>
     <string name="key_symbols">Zahlen und Symbole</string>
     <string name="key_letters">Buchstaben</string>
     <string name="key_minus">Minus</string>

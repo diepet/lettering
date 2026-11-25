@@ -45,6 +45,7 @@ Lettering!</string>
     <string name="key_enter">Invio</string>
     <string name="key_delete">Backspace</string>
     <string name="key_space">Spazio</string>
+    <string name="key_emoji">Emoji</string>
     <string name="key_symbols">Numeri e simboli</string>
     <string name="key_letters">Lettere</string>
     <string name="key_minus">Meno</string>

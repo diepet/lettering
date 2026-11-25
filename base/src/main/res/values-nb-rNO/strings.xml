@@ -81,6 +81,7 @@
     <string name="key_enter">Enter</string>
     <string name="key_delete">Tilbake</string>
     <string name="key_space">Mellomrom</string>
+    <string name="key_emoji">Emoji</string>
     <string name="key_symbols">Tall og symboler</string>
     <string name="key_letters">Bokstaver</string>
     <string name="key_minus">Minus</string>

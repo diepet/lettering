@@ -45,6 +45,7 @@ Lettering!</string>
     <string name="key_enter">Введення</string>
     <string name="key_delete">Backspace</string>
     <string name="key_space">Пробіл</string>
+    <string name="key_emoji">Емодзі</string>
     <string name="key_symbols">Цифри й символи</string>
     <string name="key_letters">Літери</string>
     <string name="key_minus">Мінус</string>

@@ -67,6 +67,7 @@
     <string name="key_enter">Intro</string>
     <string name="key_delete">Retroceso</string>
     <string name="key_space">Espacio</string>
+    <string name="key_emoji">Emoji</string>
     <string name="key_symbols">Números y símbolos</string>
     <string name="key_letters">Letras</string>
     <string name="key_minus">Menos</string>

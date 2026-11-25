@@ -1,6 +1,7 @@
 package io.github.diepet.lettering.keyboard
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class KeyboardLayoutTest {
@@ -23,6 +24,24 @@ class KeyboardLayoutTest {
         for (layout in layouts) {
             val widths = layout.rows.map { row -> row.sumOf { it.width } }
             assertEquals(listOf(100, if (layout.rows[1].size == 9) 90 else 100, 100, 100), widths)
+        }
+    }
+
+    @Test
+    fun emojiKeySitsBetweenCommaAndSpaceOnLetterAndNumberLayouts() {
+        val layouts = listOf(
+            KeyboardLayout.forAlphabet(Constants.QWERTY),
+            KeyboardLayout.forAlphabet(Constants.AZERTY),
+            KeyboardLayout.forAlphabet(Constants.QWERTZ),
+            KeyboardLayout.numbers
+        )
+
+        for (layout in layouts) {
+            val bottomRow = layout.rows.last()
+            val emojiIndex = bottomRow.indexOfFirst { it.code == Constants.EMOJI_PICKER_KEYCODE }
+            assertTrue(emojiIndex > 0)
+            assertEquals(',', bottomRow[emojiIndex - 1].code.toChar())
+            assertEquals(Constants.KEYCODE_SPACE, bottomRow[emojiIndex + 1].code)
         }
     }
 }
