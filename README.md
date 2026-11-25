@@ -2,9 +2,9 @@
 
 <img align="right" src="assets/lettering.png" alt="Lettering app icon" width="112">
 
-Lettering is an Android keyboard for applying expressive Unicode text styles while you type. It includes more than 30 styles, configurable keyboard layouts, and style ordering controls.
+Lettering is an Android keyboard for applying expressive Unicode text styles while you type. It includes more than 30 styles, configurable keyboard layouts, style ordering controls, and an emoji picker with offline search by name or keyword.
 
-The app menu is available in Arabic, Chinese (Simplified), English, French, German, Italian, Japanese, Portuguese, Russian, Spanish, and Ukrainian. The app follows the language selected for Android.
+The app follows the language selected for Android. Its interface is available in Arabic, Catalan, Chinese (Simplified), English, Esperanto, Finnish, French, German, Italian, Japanese, Norwegian Bokmål, Portuguese (including Brazilian Portuguese), Russian, Spanish, Tamil, and Ukrainian. Emoji search uses localized Unicode CLDR annotations for 15 languages and falls back to English for Esperanto and other locales without a bundled search index. [Emoji search data and license](base/src/main/assets/emoji-search/NOTICE.md)
 
 ## Why Lettering exists
 
@@ -115,6 +115,7 @@ Run these commands from the repository root:
 
 ```sh
 ./gradlew :base:assembleDebug             # build a local debug APK
+./gradlew :base:assembleRelease           # build an unsigned release APK
 ./gradlew :base:testDebugUnitTest         # run JVM tests
 ./gradlew :base:connectedDebugAndroidTest # run the device test on a running emulator
 ```
@@ -125,6 +126,12 @@ If the connected test command aborts before running tests, install the test APKs
 ./gradlew :base:installDebug :base:installDebugAndroidTest
 adb shell am instrument -w io.github.diepet.lettering.test/androidx.test.runner.AndroidJUnitRunner
 ```
+
+### APK size
+
+Compressing compiled code and packing the offline search data reduced the measured debug APK from 13.89 MiB to 6.01 MiB and the unsigned release APK from 2.39 MiB to 1.81 MiB. The build generates one compressed emoji sequence list shared by all languages and a compressed annotation index for each language.
+
+In three runs per debug build on an API 36 emulator, median keyboard opening time went from 569 ms to 518 ms. Loading the index and running the first search went from 984 ms to 772 ms. These measurements are specific to the debug builds on that emulator.
 
 ## Publish to Google Play
 
