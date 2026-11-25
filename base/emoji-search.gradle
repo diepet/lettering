@@ -1,0 +1,65 @@
+import java.util.zip.GZIPOutputStream
+import java.nio.file.Files
+
+@CacheableTask
+abstract class PackEmojiSearch extends DefaultTask {
+    @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
+    abstract DirectoryProperty getSourceDirectory()
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDirectory()
+
+    @TaskAction
+    void pack() {
+        File source = sourceDirectory.get().asFile
+        File output = outputDirectory.dir('emoji-search').get().asFile
+        output.mkdirs()
+
+        List<String> sequences = new File(source, 'en.tsv').readLines('UTF-8').collect {
+            it.substring(0, it.indexOf('\t'))
+        }
+        writeGzip(new File(output, 'sequences.idx'), sequences)
+
+        Set<String> generated = ['sequences.idx'] as Set
+        source.eachFileMatch(~/.*\.tsv/) { file ->
+            List<String> rows = file.readLines('UTF-8')
+            if (rows.size() != sequences.size()) {
+                throw new GradleException("Unexpected emoji count in ${file.name}")
+            }
+            String name = file.name.replaceFirst(/\.tsv$/, '.idx')
+            generated.add(name)
+            List<String> annotations = []
+            rows.eachWithIndex { row, index ->
+                String[] fields = row.split('\t', -1)
+                if (fields.length != 3 || fields[0] != sequences[index] || !fields[1].startsWith(fields[2])) {
+                    throw new GradleException("Invalid emoji sequence or annotation in ${file.name} at line ${index + 1}")
+                }
+                // The description is also the prefix of the searchable text.
+                annotations.add(fields[2] + '\t' + fields[1].substring(fields[2].length()))
+            }
+            PackEmojiSearch.writeGzip(new File(output, name), annotations)
+        }
+        output.eachFile { file ->
+            if (!generated.contains(file.name)) Files.delete(file.toPath())
+        }
+    }
+
+    private static void writeGzip(File file, List<String> lines) {
+        file.withOutputStream { stream ->
+            new GZIPOutputStream(stream).withWriter('UTF-8') { writer ->
+                lines.each { line ->
+                    writer.write(line)
+                    writer.write('\n')
+                }
+            }
+        }
+    }
+}
+
+androidComponents.onVariants(androidComponents.selector().all()) { variant ->
+    def packTask = tasks.register("pack${variant.name.capitalize()}EmojiSearch", PackEmojiSearch) {
+        sourceDirectory.set(layout.projectDirectory.dir('src/main/emoji-search'))
+    }
+    variant.sources.assets.addGeneratedSourceDirectory(packTask) { it.outputDirectory }
+}

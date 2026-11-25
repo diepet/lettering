@@ -3,6 +3,7 @@ package io.github.diepet.lettering.keyboard
 import android.content.Context
 import java.text.Normalizer
 import java.util.Locale
+import java.util.zip.GZIPInputStream
 
 internal data class EmojiSearchEntry(
     val emoji: String,
@@ -19,19 +20,24 @@ internal object EmojiSearchIndex {
         val activeLocale = context.resources.configuration.locales[0] ?: Locale.getDefault()
         val locale = supportedLocale(activeLocale)
         return entriesByLocale.getOrPut(locale) {
-            context.assets.open("emoji-search/$locale.tsv").bufferedReader(Charsets.UTF_8).useLines { lines ->
-                lines.mapNotNull { line ->
-                    val columns = line.split('\t', limit = 3)
-                    if (columns.size != 3) return@mapNotNull null
-                    EmojiSearchEntry(
-                        emoji = columns[0],
-                        searchTerms = columns[1],
-                        description = columns[2]
-                    )
-                }.toList()
+            openIndex(context, "sequences").use { sequences ->
+                openIndex(context, locale).useLines { annotations ->
+                    annotations.map { line ->
+                        val separator = line.indexOf('\t')
+                        val description = line.substring(0, separator)
+                        EmojiSearchEntry(
+                            emoji = checkNotNull(sequences.readLine()),
+                            searchTerms = description + line.substring(separator + 1),
+                            description = description
+                        )
+                    }.toList()
+                }
             }
         }
     }
+
+    private fun openIndex(context: Context, name: String) =
+        GZIPInputStream(context.assets.open("emoji-search/$name.idx")).bufferedReader(Charsets.UTF_8)
 
     private fun supportedLocale(locale: Locale): String = when (locale.language.lowercase(Locale.ROOT)) {
         "ar", "ca", "de", "es", "fi", "fr", "it", "ja", "pt", "ru", "ta", "uk", "zh" ->
@@ -42,6 +48,8 @@ internal object EmojiSearchIndex {
         else -> "en"
     }
 }
+
+private val whitespace = Regex("\\s+")
 
 internal fun normalizeEmojiSearchText(text: String): String {
     val decomposed = Normalizer.normalize(text.lowercase(Locale.ROOT), Normalizer.Form.NFD)
@@ -55,5 +63,5 @@ internal fun normalizeEmojiSearchText(text: String): String {
                 append(character)
             }
         }
-    }.trim().replace(Regex("\\s+"), " ")
+    }.trim().replace(whitespace, " ")
 }

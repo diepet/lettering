@@ -4,4 +4,6 @@ The locale-specific emoji names and keywords in this directory are generated fro
 
 CLDR-derived indexes are included only for app locales with annotation data: English, Arabic, Catalan, German, Spanish, Finnish, French, Italian, Japanese, Norwegian Bokmål, Portuguese, Russian, Tamil, Ukrainian, and Simplified Chinese. The app's Esperanto locale has no CLDR emoji annotations, so search falls back to English there. Other device locales also use the app's English fallback.
 
-CLDR data is distributed under the Unicode License V3; see [UNICODE-LICENSE.txt](UNICODE-LICENSE.txt).
+The build packs the TSV files from `base/src/main/emoji-search` into a shared emoji sequence list and one compressed annotation file per language. Each annotation contains the description followed by the remaining search terms, in the same row order as the sequence list.
+
+CLDR data is distributed under the Unicode License V3. See [UNICODE-LICENSE.txt](UNICODE-LICENSE.txt).

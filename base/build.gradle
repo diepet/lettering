@@ -1,8 +1,12 @@
 apply plugin: 'com.android.application'
+apply from: 'emoji-search.gradle'
 
 android {
     compileSdk = 36
     buildFeatures.resValues = true
+    packaging.dex.useLegacyPackaging = true
+    // Emoji indexes are already gzip-compressed by pack<Variant>EmojiSearch.
+    androidResources.noCompress += 'idx'
     defaultConfig {
         applicationId = "io.github.diepet.lettering"
         minSdk = 30
