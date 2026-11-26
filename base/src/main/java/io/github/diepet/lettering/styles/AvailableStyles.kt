@@ -13,6 +13,46 @@ object AvailableStyles {
 
     private const val disabled_key = "pref_disabled_fonts"
     private const val order_key = "pref_font_order"
+
+    // Resource IDs keep the default order independent of localized names and saved style IDs.
+    private val defaultStyleOrder = intArrayOf(
+        R.array.charset_cutout,
+        R.array.charset_olde,
+        R.array.charset_script_bold,
+        R.array.charset_organic,
+        R.array.charset_upside_down,
+        R.array.charset_underlined,
+        R.string.name_spongemock,
+        R.array.charset_mirrored,
+        R.array.charset_supertiny,
+        R.array.charset_script,
+        R.array.charset_strikethrough,
+        R.array.charset_filled_boxes,
+        R.array.charset_clear_boxes,
+        R.array.charset_maritime,
+        R.array.charset_filled_circles,
+        R.array.charset_clear_circles,
+        R.array.charset_mono,
+        R.array.charset_olde_bold,
+        R.string.name_zalgo,
+        R.array.charset_extra_wide,
+        R.array.charset_clapclap,
+        R.array.sans_bold,
+        R.array.charset_bold_serif,
+        R.array.sans_italic,
+        R.array.charset_serif_italic,
+        R.array.sans_bolditalic,
+        R.array.charset_bolditalic,
+        R.array.accent_frowny_face,
+        R.array.accent_happy_face,
+        R.array.accent_thunder,
+        R.array.accents_slashed,
+        R.array.accents_mustache,
+        R.array.starry_night,
+        R.array.accents_lite_strikes,
+        R.array.charset_small_caps,
+    )
+
     private val styles = LinkedList<AppTextStyle>()
     private val disabledList = HashSet<String>()
     private val styleOrder = LinkedList<String>()
@@ -60,14 +100,14 @@ object AvailableStyles {
         styles.add(
             RandomCaps(
                 res.getString(R.string.name_spongemock),
-                getOrder(RandomCaps.id),
+                getOrder(RandomCaps.id, R.string.name_spongemock),
                 !disabledList.contains(RandomCaps.id)
             )
         )
         styles.add(
             Zalgo(
                 res.getString(R.string.name_zalgo),
-                getOrder(Zalgo.id),
+                getOrder(Zalgo.id, R.string.name_zalgo),
                 !disabledList.contains(Zalgo.id)
             )
         )
@@ -101,10 +141,14 @@ object AvailableStyles {
         }
     }
 
-    private fun getOrder(id: String): Int {
-        if (styleOrder.contains(id))
-            return styleOrder.indexOf(id)
-        return styles.size
+    private fun getOrder(styleId: String, styleResourceId: Int): Int {
+        val position = if (styleOrder.isEmpty()) {
+            defaultStyleOrder.indexOf(styleResourceId)
+        } else {
+            styleOrder.indexOf(styleId)
+        }
+        // Stable sorting keeps unlisted styles at the end in registration order.
+        return if (position >= 0) position else Int.MAX_VALUE
     }
 
     fun setNewPosition(id: String, position: Int) {
@@ -155,7 +199,7 @@ object AvailableStyles {
                 val charset = res.getStringArray(styleDef.getResourceId(charsetIndex, 0))
                 val reversed = styleDef.getBoolean(reverseIndex, false)
                 val enabled = !disabledList.contains(styleId)
-                val order = getOrder(styleId)
+                val order = getOrder(styleId, id)
                 if (name != null)
                     styles.add(CharsetStyle(styleId, name, order, enabled, charset, reversed))
                 styleDef.recycle()
@@ -186,7 +230,7 @@ object AvailableStyles {
                 val accentChar = styleDef.getString(accentCharIndex)
                 val enabled = !disabledList.contains(styleId)
                 if (styleId != null && name != null && accentChar != null) {
-                    val order = getOrder(styleId)
+                    val order = getOrder(styleId, id)
                     styles.add(AccentStyle(styleId, name, order, enabled, accentChar))
                 }
                 styleDef.recycle()
